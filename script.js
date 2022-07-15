@@ -1,20 +1,18 @@
 import User from './modules/user.js'
+import App from './modules/app.js'
 
-console.log('hello')
+// const user = new User('example@mail.com')
+// user.getEmail()
 
-const user = new User('example@mail.com')
+// const maliKrug = user.addRoute('mali krug')
 
-// console.log(user.email)
-user.getEmail()
-
-const maliKrug = user.addRoute('mali krug')
-
-console.dir(maliKrug)
-maliKrug.getName()
-maliKrug.addPin(123, 123)
-console.dir(maliKrug)
+// console.dir(maliKrug)
+// maliKrug.getName()
+// maliKrug.addPin(123, 123)
+// console.dir(maliKrug)
 
 // * Application Architecture
+// ***************************************************
 const form = document.querySelector('.form')
 const formEmail = document.querySelector('#email')
 const formPassword = document.querySelector('#password')
@@ -23,8 +21,11 @@ const formPasswordConfirmation = document.querySelector(
 )
 const submitUser = document.getElementById('submit-user')
 
+// ***************************************************
+
 const handleUserSubmit = (event) => {
   event.preventDefault()
+  console.log(event)
   const userObject = {
     user: {
       email: formEmail.value,
@@ -37,10 +38,24 @@ const handleUserSubmit = (event) => {
     method: 'POST',
     headers: {
       Accept: 'application/json',
-      'COntent-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(userObject),
-  }).then((response) => response.json()).then(data => console.log(data))
+  })
+    .then((response) => {
+      console.log(response)
+      return response.json()
+    })
+    .then(({data}) => {
+      console.log(data)
+      const userEmail = data.user.email
+      const token = data.token
+      const routes = data.routes || []
+
+      const user = new User(userEmail, token, routes)
+      console.log(user)
+    })
+    .catch((error) => console.log(error))
 }
 
 form.addEventListener('submit', handleUserSubmit)

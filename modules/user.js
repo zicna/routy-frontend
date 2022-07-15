@@ -2,9 +2,12 @@ import Route from "./route.js";
 
 export default class User{
     _email;
-    _routes = []
-    constructor(email){
+    _routes;
+    _token;
+    constructor(email, token, routes){
         this._email = email
+        this._routes = routes
+        this._token = token
     }
 
     getEmail(){

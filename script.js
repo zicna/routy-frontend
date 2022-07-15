@@ -19,6 +19,9 @@ import App from './modules/app.js'
 const btnSignin = document.getElementById('btn_signin')
 const btnAddRoute = document.getElementById('add_route')
 
+const credentials = document.querySelector(".credentials")
+const routesContainer = document.querySelector(".routes-container")
+
 //* user form
 const form = document.querySelector('.form')
 const formEmail = document.querySelector('#email')
@@ -77,6 +80,11 @@ const handleUserSubmit = (event) => {
 
       const app = new App()
       app.setToken(token)
+      credentials.innerHTML = `
+      <p>
+        email: ${user.getEmail()}
+      </p>
+      `
       //   debugger
     })
     .catch((error) => console.log(error))
@@ -89,8 +97,7 @@ const handleUserSubmit = (event) => {
 const handleRouteSubmit = (event) => {
   // !hard code the token
   event.preventDefault()
-  const token =
-    'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NTkxMjAyMDh9.Gx6nc3VL51oYxMn4OtLniyfrGGMNsZNlTWa0hTE4Hd8'
+  const token = localStorage.getItem("token")
   const dataObject = {
     user: { route_name: routeName.value },
   }
@@ -107,8 +114,14 @@ const handleRouteSubmit = (event) => {
     .then((response) => response.json())
     .then(({ data }) => {
       console.log(data)
-      debugger
+    //   debugger
+      const routeLI = document.createElement("li")
+      routeLI.innerHTML = `
+      ${data.user.route_name}
+      `
+      routesContainer.appendChild(routeLI)
     })
+    event.target.reset()
 }
 
 // * Event Listeners

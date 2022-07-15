@@ -11,7 +11,7 @@ export default class User{
     }
 
     getEmail(){
-        console.log(this._email)
+        return this._email
     }
 
     addRoute(routeName){

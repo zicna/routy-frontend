@@ -50,7 +50,7 @@ const handleUserSubmit = (event) => {
       console.log(data)
       const userEmail = data.user.email
       const token = data.token
-      const routes = data.routes || []
+      const routes = data.user.routes || []
 
       const user = new User(userEmail, token, routes)
       console.log(user)

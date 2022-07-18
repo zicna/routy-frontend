@@ -51,6 +51,7 @@ const handleUserSubmit = async function (event) {
     }
 
     await model.loadUser(userObject)
+    if(!model.state.token) throw new Error("something went wrong")
 
     userView.render(model.state.user)
 
@@ -60,13 +61,15 @@ const handleUserSubmit = async function (event) {
     
   } catch (error) {
     alert(error)
+    event.target.reset()
   }
 }
 
-const handleRouteSubmit = (event) => {
-  // !hard code the token
+const handleRouteSubmit = async function(event){
   event.preventDefault()
-  const token = localStorage.getItem('token')
+  
+  const token = model.state.token
+
   const dataObject = {
     user: { route_name: routeName.value },
   }

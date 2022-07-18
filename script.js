@@ -67,33 +67,15 @@ const handleUserSubmit = async function (event) {
 
 const handleRouteSubmit = async function(event){
   event.preventDefault()
-  
-  const token = model.state.token
+
 
   const dataObject = {
     user: { route_name: routeName.value },
   }
 
-  // ! when sending body along with token headers must look as line 86. ans 87.
-  fetch('http://localhost:3000/routes', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(dataObject),
-  })
-    .then((response) => response.json())
-    .then(({ data }) => {
-      console.log(data)
-      //   debugger
-      const routeLI = document.createElement('li')
-      routeLI.innerHTML = `
-      ${data.user.route_name}
-      `
-      routesContainer.appendChild(routeLI)
-    })
+  model.createRoute(dataObject)
   event.target.reset()
+
 }
 
 // * Event Listeners

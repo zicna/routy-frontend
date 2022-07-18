@@ -3,6 +3,9 @@
 import User from './modules/user.js'
 import App from './modules/app.js'
 
+// ! importing from MVC architecure
+import * as model from './src/model.js'
+
 // const user = new User('example@mail.com')
 // user.getEmail()
 
@@ -48,7 +51,8 @@ const handleSigninClick = (event) => {
 
 const handleUserSubmit = (event) => {
   event.preventDefault()
-  console.log(event)
+  // console.log(event)
+
   const userObject = {
     user: {
       email: formEmail.value,
@@ -57,37 +61,39 @@ const handleUserSubmit = (event) => {
     },
   }
 
-  fetch('http://localhost:3000/signup', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userObject),
-  })
-    .then((response) => {
-      console.log(response)
-      return response.json()
-    })
-    .then(({ data }) => {
-      console.log(data)
-      const userEmail = data.user.email
-      const token = data.token
-      const routes = data.user.routes || []
+  model.loadUser(userObject)
 
-      const user = new User(userEmail, token, routes)
-      console.log(user)
+  // fetch('http://localhost:3000/signup', {
+  //   method: 'POST',
+  //   headers: {
+  //     Accept: 'application/json',
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify(userObject),
+  // })
+  //   .then((response) => {
+  //     console.log(response)
+  //     return response.json()
+  //   })
+  //   .then(({ data }) => {
+  //     console.log(data)
+  //     const userEmail = data.user.email
+  //     const token = data.token
+  //     const routes = data.user.routes || []
 
-      const app = new App()
-      app.setToken(token)
-      credentials.innerHTML = `
-      <p>
-        email: ${user.getEmail()}
-      </p>
-      `
-      //   debugger
-    })
-    .catch((error) => console.log(error))
+  //     const user = new User(userEmail, token, routes)
+  //     console.log(user)
+
+  //     const app = new App()
+  //     app.setToken(token)
+  //     credentials.innerHTML = `
+  //     <p>
+  //       email: ${user.getEmail()}
+  //     </p>
+  //     `
+  //     //   debugger
+  //   })
+  //   .catch((error) => console.log(error))
 
   event.target.reset()
   btnAddRoute.style.display = "block"

@@ -4,7 +4,8 @@ import App from './modules/app.js'
 
 // ! importing from MVC architecure
 import * as model from './src/model.js'
-import userView from './src/view.js'
+import userView from './src/view/userView.js'
+import routeView from './src/view/routeView.js'
 
 // * Application Architecture
 // ***************************************************
@@ -12,7 +13,7 @@ import userView from './src/view.js'
 const btnSignin = document.getElementById('btn_signin')
 const btnAddRoute = document.getElementById('add_route')
 
-const routesContainer = document.querySelector('.routes-container')
+// const routesContainer = document.querySelector('.routes-container')
 
 //* user form
 const form = document.querySelector('.form')
@@ -72,8 +73,12 @@ const handleRouteSubmit = async function(event){
   const dataObject = {
     user: { route_name: routeName.value },
   }
-
-  model.createRoute(dataObject)
+try {
+  await model.createRoute(dataObject)
+  routeView.render(model.state.userRoutes)
+} catch (error) {
+  alert(error)
+}
   event.target.reset()
 
 }

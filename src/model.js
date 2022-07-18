@@ -48,19 +48,8 @@ export const createRoute = async function (dataObject) {
     //! guard clause
     if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
     const { user } = data.data
-    
-    state.userRoutes.push(user.route_name)
-    debugger
 
-    // .then(({ data }) => {
-    //   console.log(data)
-    //   //   debugger
-    //   const routeLI = document.createElement('li')
-    //   routeLI.innerHTML = `
-    //   ${data.user.route_name}
-    //   `
-    //   routesContainer.appendChild(routeLI)
-    // })
+    state.userRoutes.push(user.route_name)
   } catch (error) {
     console.log(error)
   }

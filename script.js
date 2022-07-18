@@ -1,20 +1,10 @@
 // ! HTML id's naming convention snake_case
-
 import User from './modules/user.js'
 import App from './modules/app.js'
 
 // ! importing from MVC architecure
 import * as model from './src/model.js'
-
-// const user = new User('example@mail.com')
-// user.getEmail()
-
-// const maliKrug = user.addRoute('mali krug')
-
-// console.dir(maliKrug)
-// maliKrug.getName()
-// maliKrug.addPin(123, 123)
-// console.dir(maliKrug)
+import userView from './src/view.js'
 
 // * Application Architecture
 // ***************************************************
@@ -22,8 +12,7 @@ import * as model from './src/model.js'
 const btnSignin = document.getElementById('btn_signin')
 const btnAddRoute = document.getElementById('add_route')
 
-const credentials = document.querySelector(".credentials")
-const routesContainer = document.querySelector(".routes-container")
+const routesContainer = document.querySelector('.routes-container')
 
 //* user form
 const form = document.querySelector('.form')
@@ -49,61 +38,35 @@ const handleSigninClick = (event) => {
   form.style.display = 'block'
 }
 
-const handleUserSubmit = (event) => {
-  event.preventDefault()
-  // console.log(event)
+const handleUserSubmit = async function (event) {
+  try {
+    event.preventDefault()
 
-  const userObject = {
-    user: {
-      email: formEmail.value,
-      password: formPassword.value,
-      password_confirmation: formPasswordConfirmation.value,
-    },
+    const userObject = {
+      user: {
+        email: formEmail.value,
+        password: formPassword.value,
+        password_confirmation: formPasswordConfirmation.value,
+      },
+    }
+
+    await model.loadUser(userObject)
+
+    userView.render(model.state.user)
+
+    event.target.reset()
+    btnAddRoute.style.display = 'block'
+    form.style.display = 'none'
+    
+  } catch (error) {
+    alert(error)
   }
-
-  model.loadUser(userObject)
-
-  // fetch('http://localhost:3000/signup', {
-  //   method: 'POST',
-  //   headers: {
-  //     Accept: 'application/json',
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify(userObject),
-  // })
-  //   .then((response) => {
-  //     console.log(response)
-  //     return response.json()
-  //   })
-  //   .then(({ data }) => {
-  //     console.log(data)
-  //     const userEmail = data.user.email
-  //     const token = data.token
-  //     const routes = data.user.routes || []
-
-  //     const user = new User(userEmail, token, routes)
-  //     console.log(user)
-
-  //     const app = new App()
-  //     app.setToken(token)
-  //     credentials.innerHTML = `
-  //     <p>
-  //       email: ${user.getEmail()}
-  //     </p>
-  //     `
-  //     //   debugger
-  //   })
-  //   .catch((error) => console.log(error))
-
-  event.target.reset()
-  btnAddRoute.style.display = "block"
-  form.style.display = 'none'
 }
 
 const handleRouteSubmit = (event) => {
   // !hard code the token
   event.preventDefault()
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem('token')
   const dataObject = {
     user: { route_name: routeName.value },
   }
@@ -120,14 +83,14 @@ const handleRouteSubmit = (event) => {
     .then((response) => response.json())
     .then(({ data }) => {
       console.log(data)
-    //   debugger
-      const routeLI = document.createElement("li")
+      //   debugger
+      const routeLI = document.createElement('li')
       routeLI.innerHTML = `
       ${data.user.route_name}
       `
       routesContainer.appendChild(routeLI)
     })
-    event.target.reset()
+  event.target.reset()
 }
 
 // * Event Listeners

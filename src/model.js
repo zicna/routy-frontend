@@ -4,6 +4,7 @@ export const state = {
     token: ''
 }
 
+// ! loadUser is NOT a pure function since it is manipulating state
 export const loadUser = async function(userObject){
 try {
     const response = await fetch('http://localhost:3000/signup', {
@@ -21,7 +22,6 @@ try {
     
     const {user} = data.data;
     const {token} = data.data;
-    debugger
 
     state.user = Object.assign({}, user)
     state.token = token;

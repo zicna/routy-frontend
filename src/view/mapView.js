@@ -28,11 +28,19 @@ class MapView {
     if (!navigator.geolocation) {
       return alert('Sorry your browser does not support geolocation')
     }
-    navigator.geolocation.getCurrentpositiontion(successCallback, errorCallback)
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
   }
 
   loadMap(){
-    
+    const coors = [this._lat, this._long]
+    const zoomLevel = 10
+    const map = L.map(mapContainer).setView(coors, zoomLevel)
+    // console.dir(map)
+
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map)
   }
 }
 

@@ -6,6 +6,7 @@ import App from './modules/app.js'
 import * as model from './src/model.js'
 import userView from './src/view/userView.js'
 import routeView from './src/view/routeView.js'
+import mapView from './src/view/mapView.js'
 
 // * Application Architecture
 // ***************************************************
@@ -57,6 +58,8 @@ const handleUserSubmit = async function (event) {
     userView.render(model.state.user)
 
     event.target.reset()
+    // !call something to load map with current user navigation
+    mapView.render()
     btnAddRoute.style.display = 'block'
     form.style.display = 'none'
     

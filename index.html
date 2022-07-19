@@ -5,28 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Routy App</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css" />
+    <!--! leaflet library -->
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""
+    />
+    <script
+    defer
+    src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""
+    ></script>
     <script type="module" src="script.js"></script>
   </head>
   <body>
-    <div class="credentials">
-    </div>
+    <div class="credentials"></div>
     <div class="routes-container">
-        <ul class="route-list"></ul>
+      <ul class="route-list"></ul>
     </div>
     <button id="btn_signin">Create Account</button>
     <div class="form-container">
       <form class="form" id="user_form" action="#">
         <div>
-          <input type="text" placeholder="example@example.com" id="email"/>
+          <input type="text" placeholder="example@example.com" id="email" />
           <label for="">email</label>
         </div>
         <div>
-          <input type="password"  placeholder="********" id="password"/>
+          <input type="password" placeholder="********" id="password" />
           <label for="">password</label>
         </div>
         <div>
-          <input type="password" placeholder="********" id="password_confirmation"/>
+          <input
+            type="password"
+            placeholder="********"
+            id="password_confirmation"
+          />
           <label for=""> password confirmation</label>
         </div>
         <div>
@@ -35,20 +51,19 @@
       </form>
     </div>
     <div class="form-container">
-        <form action="#" id="route_form">
-            <div>
-                <input type="text" id="route_name">
-                <label for="">Route Name</label>
-            </div>
-            <div>
-                <input type="submit"></div>
-        </form>
-        <div class="btn-container">
-            <button id="add_route">Add Route</button>
+      <form action="#" id="route_form">
+        <div>
+          <input type="text" id="route_name" />
+          <label for="">Route Name</label>
         </div>
+        <div>
+          <input type="submit" />
+        </div>
+      </form>
+      <div class="btn-container">
+        <button id="add_route">Add Route</button>
+      </div>
     </div>
-    <div class="map-container">
-      
-    </div>
+    <div class="map-container"></div>
   </body>
 </html>

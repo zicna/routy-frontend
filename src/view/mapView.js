@@ -1,8 +1,8 @@
 const mapContainer = document.querySelector('.map-container')
 
 class MapView {
-  long
-  lat
+  #long
+  #lat
   render() {
     this.#getLocation()
     
@@ -17,9 +17,9 @@ class MapView {
     )
   }
   #successCallback(position) {
-    this.lat = position.coords.latitude
-    this.long = position.coords.longitude
-    
+    this.#lat = position.coords.latitude
+    this.#long = position.coords.longitude
+
     this.#loadMap()
   }
   #errorCallback(error) {
@@ -38,7 +38,7 @@ class MapView {
   }
 
   #loadMap() {
-    const coors = [this.lat, this.long]
+    const coors = [this.#lat, this.#long]
     const zoomLevel = 10
     const map = L.map(mapContainer).setView(coors, zoomLevel)
 

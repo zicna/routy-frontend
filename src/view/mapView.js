@@ -5,7 +5,6 @@ class MapView {
   #lat
   render() {
     this.#getLocation()
-    
   }
 
   #getLocation() {
@@ -46,7 +45,25 @@ class MapView {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map)
-  }
+
+    map.on("click", function(mapEvent){
+        const{lat, lng} = mapEvent.latlng
+      L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(
+          L.popup({
+            maxWidtht: 250,
+            minWidth: 100,
+            autoClose: false,
+            closeOnClick: false,
+            className: 'popup',
+          })
+        )
+        .setPopupContent('Workout')
+        .openPopup()
+    })
+    }
+
 }
 
 export default new MapView()

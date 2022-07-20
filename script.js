@@ -32,12 +32,11 @@ const routeList = document.querySelector(".route-list")
 
 
 // ***************************************************
-const handleAddRouteClick = (event) => {
+const handleAddRouteClick = () => {
   btnAddRoute.style.display = 'none'
   routeForm.style.display = 'block'
 }
-const handleSigninClick = (event) => {
-  console.log('hello world: ))))')
+const handleSigninClick = () => {
   btnSignin.style.display = 'none'
   form.style.display = 'block'
 }
@@ -74,7 +73,6 @@ const handleUserSubmit = async function (event) {
 const handleRouteSubmit = async function(event){
   event.preventDefault()
 
-
   const dataObject = {
     user: { route_name: routeName.value },
   }
@@ -85,7 +83,6 @@ try {
   alert(error)
 }
   event.target.reset()
-
 }
 
 // * using event prapagation to handle clicking on delete btn
@@ -106,23 +103,15 @@ const handleDeleteRouteClick = function(event){
       alert(error)
     }
   }else if(event.target.classList.contains("btn-add-pin")){
-    
+
   }
   
 }
-
 // * Event Listeners
 // *****************************************************************
-// window.addEventListener("load", ()=>{
-//   const state = model.state
-//   console.dir(state)
-//   debugger
-// })
-
 form.addEventListener('submit', handleUserSubmit)
 routeForm.addEventListener('submit', handleRouteSubmit)
 btnSignin.addEventListener('click', handleSigninClick)
 btnAddRoute.addEventListener('click', handleAddRouteClick)
 routeList.addEventListener("click", handleDeleteRouteClick)
-
 // *****************************************************************

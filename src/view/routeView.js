@@ -1,6 +1,6 @@
 
 const routesContainer = document.querySelector('.routes-container')
-
+const routesList = document.querySelector(".route-list")
 class RouteView{
     _data;
     render(data){
@@ -14,13 +14,14 @@ class RouteView{
             const li = document.createElement('li')
             li.innerHTML = `
             ${element}
+            <button class="btn btn-delete">X</button>
             `
-            routesContainer.appendChild(li)
+            routesList.appendChild(li)
         });
     }
 
     clear(){
-        routesContainer.innerHTML = '';
+        routesList.innerHTML = '';
     }
 
 }

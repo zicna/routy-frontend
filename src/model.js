@@ -49,8 +49,33 @@ export const createRoute = async function (dataObject) {
     if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
     const { user } = data.data
 
-    state.userRoutes.push(user.route_name)
+    state.userRoutes.push({id: user.route_id, name: user.route_name})
   } catch (error) {
     console.log(error)
   }
+}
+
+export const deleteRoute = async function(dataObject){
+    try {
+        const token = state.token
+        const response = await fetch(`http://localhost:3000/routes/${dataObject.user.route_id}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(dataObject)
+        })
+
+        const data = await response.json()
+        // ! quard clause
+        if(!response.ok) throw new Error(`${data.message}, ${data.status}`)
+
+        const { user } = data.data
+
+        state.userRoutes = state.userRoutes.filter(route => route.id != user.route_id)
+
+    } catch (error) {
+        console.log(error)
+    }
 }

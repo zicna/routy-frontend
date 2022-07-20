@@ -12,8 +12,9 @@ class RouteView{
     generateMarkup(){
         this._data.forEach(element => {
             const li = document.createElement('li')
+            li.dataset.routeId = element.id
             li.innerHTML = `
-            ${element}
+            ${element.name}
             <button class="btn btn-delete">X</button>
             `
             routesList.appendChild(li)

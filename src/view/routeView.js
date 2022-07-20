@@ -16,6 +16,7 @@ class RouteView{
             li.innerHTML = `
             ${element.name}
             <button class="btn btn-delete">X</button>
+            <button class="btn btn-add-pin">+</button>
             `
             routesList.appendChild(li)
         });

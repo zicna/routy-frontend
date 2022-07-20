@@ -1,29 +1,33 @@
-.form{
-    display: none;
+.form {
+  display: none;
 }
 
-#route_form{
-    display: none;
+#route_form {
+  display: none;
 }
 
-#add_route{
-    display: none;
+#add_route {
+  display: none;
 }
 
-.map-container{
-    width: 500px;
-    height: 500px;
-    background-color: aquamarine;
+.map-container {
+  width: 500px;
+  height: 500px;
+  background-color: aquamarine;
 }
 
 /* * buttons */
 
-.btn{
-display: inline-block;
+.btn {
+  display: inline-block;
+  color: white;
+  font-weight: 600;
 }
 
-.btn-delete{
-    background-color: red;
-    color: white;
-    font-weight: 600;
+.btn-delete {
+  background-color: red;
+}
+
+.btn-add-pin {
+  background-color: green;
 }

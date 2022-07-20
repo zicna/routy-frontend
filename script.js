@@ -25,9 +25,11 @@ const formPasswordConfirmation = document.querySelector(
 )
 const submitUser = document.getElementById('submit_user')
 
-//* route form
+//* route form and buttons
 const routeForm = document.getElementById('route_form')
 const routeName = document.getElementById('route_name')
+const routeList = document.querySelector(".route-list")
+
 
 // ***************************************************
 const handleAddRouteClick = (event) => {
@@ -86,11 +88,30 @@ try {
 
 }
 
+// * using event prapagation to handle clicking on delete btn
+// ! not async callback because we will have positive approach=> 
+// !remove form UI and trust it will be removed from backend as well
+const handleDeleteRouteClick = function(event){
+  event.preventDefault()
+
+  const route = {
+    user: {route_id: event.target.parentElement.dataset.routeId}
+  }
+
+  try {
+    event.target.parentElement.remove()
+    model.deleteRoute(route)
+  } catch (error) {
+    alert(error)
+  }
+}
+
 // * Event Listeners
 // *****************************************************************
 form.addEventListener('submit', handleUserSubmit)
 routeForm.addEventListener('submit', handleRouteSubmit)
 btnSignin.addEventListener('click', handleSigninClick)
 btnAddRoute.addEventListener('click', handleAddRouteClick)
+routeList.addEventListener("click", handleDeleteRouteClick)
 
 // *****************************************************************

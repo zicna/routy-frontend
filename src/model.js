@@ -76,6 +76,6 @@ export const deleteRoute = async function(dataObject){
         state.userRoutes = state.userRoutes.filter(route => route.id != user.route_id)
 
     } catch (error) {
-        console.log(error)
+        alert(error)
     }
 }

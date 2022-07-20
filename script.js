@@ -93,7 +93,9 @@ try {
 // !remove form UI and trust it will be removed from backend as well
 const handleDeleteRouteClick = function(event){
   event.preventDefault()
-
+// ! quard clause if click event happens on ul outside of button
+  if(!event.target.classList.contains("btn-delete")) return 
+  
   const route = {
     user: {route_id: event.target.parentElement.dataset.routeId}
   }
@@ -108,6 +110,12 @@ const handleDeleteRouteClick = function(event){
 
 // * Event Listeners
 // *****************************************************************
+// window.addEventListener("load", ()=>{
+//   const state = model.state
+//   console.dir(state)
+//   debugger
+// })
+
 form.addEventListener('submit', handleUserSubmit)
 routeForm.addEventListener('submit', handleRouteSubmit)
 btnSignin.addEventListener('click', handleSigninClick)

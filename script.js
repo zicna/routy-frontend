@@ -94,18 +94,21 @@ try {
 const handleDeleteRouteClick = function(event){
   event.preventDefault()
 // ! quard clause if click event happens on ul outside of button
-  if(!event.target.classList.contains("btn-delete")) return 
+  if(event.target.classList.contains("btn-delete")){
+    const route = {
+      user: {route_id: event.target.parentElement.dataset.routeId}
+    }
   
-  const route = {
-    user: {route_id: event.target.parentElement.dataset.routeId}
+    try {
+      event.target.parentElement.remove()
+      model.deleteRoute(route)
+    } catch (error) {
+      alert(error)
+    }
+  }else if(event.target.classList.contains("btn-add-pin")){
+    
   }
-
-  try {
-    event.target.parentElement.remove()
-    model.deleteRoute(route)
-  } catch (error) {
-    alert(error)
-  }
+  
 }
 
 // * Event Listeners

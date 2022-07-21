@@ -1,23 +1,39 @@
-.form {
-  display: none;
+/* ********************************************** */
+/* * non specific classes */
+.show{
+    display: block;
 }
-
-#route_form {
-  display: none;
+.hide{
+    display: none;
 }
-
-#add_route {
-  display: none;
+.show-inline{
+    display: inline-block;
 }
-
+/* ********************************************** */
+/* * containers */
 .map-container {
   width: 500px;
   height: 500px;
   background-color: aquamarine;
 }
 
-/* * buttons */
+/* ********************************************** */
+/* * forms */
+/* .user-form {
+  display: none;
+} */
 
+/* #route_form {
+  display: none;
+} */
+
+/* #add_route { */
+  /* display: none; */
+/* } */
+
+
+/* ********************************************** */
+/* * buttons */
 .btn {
   display: inline-block;
   color: white;
@@ -31,3 +47,8 @@
 .btn-add-pin {
   background-color: green;
 }
+/* ********************************************** */
+
+
+/* ********************************************** */
+

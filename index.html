@@ -28,7 +28,7 @@
     </div>
     <button id="btn_signin">Create Account</button>
     <div class="form-container">
-      <form class="form" id="user_form" action="#">
+      <form class="user-form hide" id="user_form" action="#">
         <div>
           <input type="text" placeholder="example@example.com" id="email" />
           <label for="">email</label>
@@ -47,11 +47,12 @@
         </div>
         <div>
           <input type="submit" value="Submit" id="submit_user" />
+          <input type="text" value="Cancel" id="cancel_submit_user" />
         </div>
       </form>
     </div>
     <div class="form-container">
-      <form action="#" id="route_form">
+      <form action="#" id="route_form" class="hide">
         <div>
           <input type="text" id="route_name" />
           <label for="">Route Name</label>
@@ -61,7 +62,7 @@
         </div>
       </form>
       <div class="btn-container">
-        <button id="add_route">Add Route</button>
+        <button class="hide" id="add_route">Add Route</button>
       </div>
     </div>
     <div class="map-container"></div>

@@ -17,8 +17,7 @@ export const loadUser = async function (userObject, action) {
     })
 
     const data = await response.json()
-
-    if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
+    if (!response.ok) throw new Error(`${data.error}`)
 
     const { user } = data.data
     const { token } = data.data
@@ -26,7 +25,7 @@ export const loadUser = async function (userObject, action) {
     state.user = Object.assign({}, user)
     state.token = token
   } catch (error) {
-    return
+    alert(error.message)
   }
 }
 
@@ -49,33 +48,37 @@ export const createRoute = async function (dataObject) {
     if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
     const { user } = data.data
 
-    state.userRoutes.push({id: user.route_id, name: user.route_name})
+    state.userRoutes.push({ id: user.route_id, name: user.route_name })
   } catch (error) {
     console.log(error)
   }
 }
 
-export const deleteRoute = async function(dataObject){
-    try {
-        const token = state.token
-        const response = await fetch(`http://localhost:3000/routes/${dataObject.user.route_id}`, {
-            method: "DELETE",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(dataObject)
-        })
+export const deleteRoute = async function (dataObject) {
+  try {
+    const token = state.token
+    const response = await fetch(
+      `http://localhost:3000/routes/${dataObject.user.route_id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataObject),
+      }
+    )
 
-        const data = await response.json()
-        // ! quard clause
-        if(!response.ok) throw new Error(`${data.message}, ${data.status}`)
+    const data = await response.json()
+    // ! quard clause
+    if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
 
-        const { user } = data.data
+    const { user } = data.data
 
-        state.userRoutes = state.userRoutes.filter(route => route.id != user.route_id)
-
-    } catch (error) {
-        alert(error)
-    }
+    state.userRoutes = state.userRoutes.filter(
+      (route) => route.id != user.route_id
+    )
+  } catch (error) {
+    alert(error)
+  }
 }

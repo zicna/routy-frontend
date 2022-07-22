@@ -90,21 +90,24 @@ const handleUserSubmit = async function (event) {
         password_confirmation: formPasswordConfirmation.value,
       },
     }
+
     const action = event.target.dataset.action
-    debugger
     await model.loadUser(userObject, action)
-    if (!model.state.token) throw new Error('something went wrong')
 
-    userView.render(model.state.user)
+    if (model.state.token) {
+      userView.render(model.state.user)
 
-    event.target.reset()
-    // !call something to load map with current user navigation
-    mapView.render()
+      event.target.reset()
+      // !call something to load map with current user navigation
+      mapView.render()
 
-    hideUserFormShowLogout()
+      hideUserFormShowLogout()
+      return
+    }
+    hideUserForm()
   } catch (error) {
-    alert(error)
-    event.target.reset()
+    // ! temp erorr handeling
+    console.log(`${error} 💥💥💥💥`)
   }
 }
 

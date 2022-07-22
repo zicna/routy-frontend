@@ -5,9 +5,9 @@ export const state = {
 }
 
 // ! loadUser is NOT a pure function since it is manipulating state
-export const loadUser = async function (userObject) {
+export const loadUser = async function (userObject, action) {
   try {
-    const response = await fetch('http://localhost:3000/signup', {
+    const response = await fetch(`http://localhost:3000/${action}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

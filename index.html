@@ -22,26 +22,40 @@
     <script type="module" src="script.js"></script>
   </head>
   <body>
+    <div class="btn-container" id="user-credentials-btns">
+      <button id="btn_sign_in">Sign In</button>
+      <button id="btn_login">Login</button>
+    </div>
     <div class="credentials"></div>
     <div class="routes-container">
       <ul class="route-list"></ul>
     </div>
-    <button id="btn_signin">Create Account</button>
     <div class="form-container">
       <form class="user-form hide" id="user_form" action="#">
         <div>
-          <input type="text" placeholder="example@example.com" id="email" required />
+          <input
+            type="text"
+            placeholder="example@example.com"
+            id="email"
+            required
+          />
           <label for="">email</label>
         </div>
         <div>
-          <input type="password" placeholder="********" id="password" required />
+          <input
+            type="password"
+            placeholder="********"
+            id="password"
+            required
+          />
           <label for="">password</label>
         </div>
         <div>
           <input
             type="password"
             placeholder="********"
-            id="password_confirmation" required
+            id="password_confirmation"
+            required
           />
           <label for=""> password confirmation</label>
         </div>

@@ -13,8 +13,6 @@ import mapView from './src/view/mapView.js'
 // * buttons
 const btnSignin = document.getElementById('btn_signin')
 const btnAddRoute = document.getElementById('add_route')
-
-// const routesContainer = document.querySelector('.routes-container')
 //* user form
 const form = document.getElementById('user_form')
 const formEmail = document.querySelector('#email')
@@ -83,6 +81,7 @@ const handleRouteSubmit = async function (event) {
     user: { route_name: routeName.value },
   }
   try {
+    // ! maybe here we can just render new route name (trusting backend will work)
     await model.createRoute(dataObject)
     routeView.render(model.state.userRoutes)
   } catch (error) {
@@ -110,9 +109,13 @@ const handleDeleteRouteClick = function (event) {
     } catch (error) {
       alert(error)
     }
-  } else if (event.target.classList.contains('btn-add-pin')) {
+  } else if (event.target.classList.contains('btn-load-map')) {
+    // mapView.render()
+
   }
 }
+
+
 // * Event Listeners
 // *****************************************************************
 form.addEventListener('submit', handleUserSubmit)

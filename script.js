@@ -30,8 +30,8 @@ const routeForm = document.getElementById('route_form')
 const routeName = document.getElementById('route_name')
 const routeList = document.querySelector('.route-list')
 
-// // ***************************************************
-// // * toggle hide class to handle clicks on page
+// ***************************************************
+// * toggle hide class to handle clicks on page
 
 const showUserForm = (event) => {
   if (event.target.id == 'user-credentials-btns') return
@@ -39,7 +39,7 @@ const showUserForm = (event) => {
   if ((event.target.id = 'btn_sign_in')) {
     userForm.dataset.action = 'signin'
     userForm.classList.toggle('hide')
-    userCredentialsBtns.toggle('hide')
+    userCredentialsBtns.classList.add('hide')
     return
   }
   if ((event.target.id = 'btn_login')) {
@@ -48,6 +48,12 @@ const showUserForm = (event) => {
     userCredentialsBtns.toggle('hide')
     return
   }
+}
+
+const hideUserForm = () => {
+  userForm.reset()
+  userForm.classList.toggle('hide')
+  userCredentialsBtns.classList.toggle('hide')
 }
 // const toggleHideOne = () => {
 //   btnAddRoute.classList.toggle('hide')
@@ -63,7 +69,7 @@ const showUserForm = (event) => {
 //   btnAddRoute.classList.toggle('hide')
 //   form.classList.toggle('hide')
 // }
-// // ***************************************************
+// ***************************************************
 
 // const handleUserSubmit = async function (event) {
 //   try {
@@ -138,11 +144,11 @@ const showUserForm = (event) => {
 // // * Event Listeners
 // // *****************************************************************
 userCredentialsBtns.addEventListener('click', showUserForm)
-// form.addEventListener('submit', handleUserSubmit)
+cancelSubmitUser.addEventListener('click', hideUserForm)
 
+// form.addEventListener('submit', handleUserSubmit)
 // routeForm.addEventListener('submit', handleRouteSubmit)
 // btnSignin.addEventListener('click', toggleHideTwo)
-// cancelSubmitUser.addEventListener("click", toggleHideTwo)
 // btnAddRoute.addEventListener('click', toggleHideOne)
 // routeList.addEventListener('click', handleDeleteRouteClick)
 // // *****************************************************************

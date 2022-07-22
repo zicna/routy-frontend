@@ -25,6 +25,7 @@ const formPasswordConfirmation = document.querySelector(
 )
 const submitUser = document.getElementById('submit_user')
 const cancelSubmitUser = document.getElementById('cancel_submit_user')
+const userLogout = document.getElementById('logout_user')
 //* route form and buttons
 const routeForm = document.getElementById('route_form')
 const routeName = document.getElementById('route_name')
@@ -35,17 +36,17 @@ const routeList = document.querySelector('.route-list')
 
 const showUserForm = (event) => {
   if (event.target.id == 'user-credentials-btns') return
-
-  if ((event.target.id = 'btn_sign_in')) {
-    userForm.dataset.action = 'signin'
+  // debugger
+  if (event.target.id == 'btn_sign_up') {
+    userForm.dataset.action = 'signup'
     userForm.classList.toggle('hide')
-    userCredentialsBtns.classList.add('hide')
+    userCredentialsBtns.classList.toggle('hide')
     return
   }
-  if ((event.target.id = 'btn_login')) {
+  if (event.target.id == 'btn_login') {
     userForm.dataset.action = 'login'
     userForm.classList.toggle('hide')
-    userCredentialsBtns.toggle('hide')
+    userCredentialsBtns.classList.toggle('hide')
     return
   }
 }
@@ -54,6 +55,12 @@ const hideUserForm = () => {
   userForm.reset()
   userForm.classList.toggle('hide')
   userCredentialsBtns.classList.toggle('hide')
+}
+
+const hideUserFormShowLogout = () => {
+  userForm.reset()
+  userForm.classList.toggle('hide')
+  userLogout.classList.toggle('hide')
 }
 // const toggleHideOne = () => {
 //   btnAddRoute.classList.toggle('hide')
@@ -70,35 +77,36 @@ const hideUserForm = () => {
 //   form.classList.toggle('hide')
 // }
 // ***************************************************
+// * AJAX requests
 
-// const handleUserSubmit = async function (event) {
-//   try {
-//     event.preventDefault()
+const handleUserSubmit = async function (event) {
+  try {
+    event.preventDefault()
 
-//     const userObject = {
-//       user: {
-//         email: formEmail.value,
-//         password: formPassword.value,
-//         password_confirmation: formPasswordConfirmation.value,
-//       },
-//     }
+    const userObject = {
+      user: {
+        email: formEmail.value,
+        password: formPassword.value,
+        password_confirmation: formPasswordConfirmation.value,
+      },
+    }
+    const action = event.target.dataset.action
+    debugger
+    await model.loadUser(userObject, action)
+    if (!model.state.token) throw new Error('something went wrong')
 
-//     await model.loadUser(userObject)
-//     if (!model.state.token) throw new Error('something went wrong')
+    userView.render(model.state.user)
 
-//     userView.render(model.state.user)
+    event.target.reset()
+    // !call something to load map with current user navigation
+    mapView.render()
 
-//     event.target.reset()
-//     // !call something to load map with current user navigation
-//     mapView.render()
-
-//     toggleHideThree()
-
-//   } catch (error) {
-//     alert(error)
-//     event.target.reset()
-//   }
-// }
+    hideUserFormShowLogout()
+  } catch (error) {
+    alert(error)
+    event.target.reset()
+  }
+}
 
 // const handleRouteSubmit = async function (event) {
 //   event.preventDefault()
@@ -146,7 +154,8 @@ const hideUserForm = () => {
 userCredentialsBtns.addEventListener('click', showUserForm)
 cancelSubmitUser.addEventListener('click', hideUserForm)
 
-// form.addEventListener('submit', handleUserSubmit)
+userForm.addEventListener('submit', handleUserSubmit)
+
 // routeForm.addEventListener('submit', handleRouteSubmit)
 // btnSignin.addEventListener('click', toggleHideTwo)
 // btnAddRoute.addEventListener('click', toggleHideOne)

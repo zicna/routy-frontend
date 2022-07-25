@@ -1,8 +1,17 @@
-export const state = {
+export let state = {
   user: {},
   userRoutes: [],
   token: '',
   message: ''
+}
+
+export const resetState = () => {
+  state = {
+    user: {},
+    userRoutes: [],
+    token: '',
+    message: ''
+  }
 }
 
 // ! loadUser is NOT a pure function since it is manipulating state
@@ -47,7 +56,7 @@ export const logOutUser = async function(){
     state["message"] = data.message
     // * debugger
 
-    
+
   } catch (error) {
     console.log(error)
   }

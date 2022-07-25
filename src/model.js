@@ -2,6 +2,7 @@ export const state = {
   user: {},
   userRoutes: [],
   token: '',
+  message: ''
 }
 
 // ! loadUser is NOT a pure function since it is manipulating state
@@ -26,6 +27,29 @@ export const loadUser = async function (userObject, action) {
     state.token = token
   } catch (error) {
     alert(error.message)
+  }
+}
+
+export const logOutUser = async function(){
+  const token = state.token
+  try {
+    const response = await fetch("http://localhost:3000/logout", {
+      method: "DELETE",
+      headers:{
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
+    })
+
+    const data = await response.json()
+    if(!response.ok) throw new Error(`${data.message}`)
+  
+    state["message"] = data.message
+    // * debugger
+
+    
+  } catch (error) {
+    console.log(error)
   }
 }
 

@@ -115,17 +115,17 @@ const handleUserSubmit = async function (event) {
 }
 
 const handleUserLogOut = async function(event){
-const userObject = {
-  user: model.state.user,
-  token: model.state.token
-}
+// const userObject = {
+//   user: model.state.user,
+//   token: model.state.token
+// }
   try {
-    event.preventDefault()
+    // event.preventDefault()
     // *log out user form model
-    await model.logOutUser(userObject)
+    await model.logOutUser()
     // * log out user from view
     userView.logOutUser(model.state.message)
-    
+
     mapView.removeMap()
     userCredentialsBtns.classList.toggle('hide')
     logOutBtn.classList.toggle('hide')

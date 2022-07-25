@@ -2,7 +2,7 @@ export let state = {
   user: {},
   userRoutes: [],
   token: '',
-  message: ''
+  message: '',
 }
 
 export const resetState = () => {
@@ -10,7 +10,7 @@ export const resetState = () => {
     user: {},
     userRoutes: [],
     token: '',
-    message: ''
+    message: '',
   }
 }
 
@@ -39,24 +39,21 @@ export const loadUser = async function (userObject, action) {
   }
 }
 
-export const logOutUser = async function(){
+export const logOutUser = async function () {
   const token = state.token
   try {
-    const response = await fetch("http://localhost:3000/logout", {
-      method: "DELETE",
-      headers:{
+    const response = await fetch('http://localhost:3000/logout', {
+      method: 'DELETE',
+      headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
-      }
+      },
     })
 
     const data = await response.json()
-    if(!response.ok) throw new Error(`${data.message}`)
-  
-    state["message"] = data.message
-    // * debugger
-
-
+    if (!response.ok) throw new Error(`${data.message}`)
+    resetState()
+    state['message'] = data.message
   } catch (error) {
     console.log(error)
   }

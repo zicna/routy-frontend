@@ -13,6 +13,7 @@ import mapView from './src/view/mapView.js'
 // * buttons
 const userCredentialsBtns = document.getElementById('user-credentials-btns')
 
+const logOutBtn = document.getElementById("logout_user")
 const btnSignIn = document.getElementById('btn_sign_in')
 const btnLogin = document.getElementById('btn-login')
 const btnAddRoute = document.getElementById('add_route')
@@ -30,6 +31,8 @@ const userLogout = document.getElementById('logout_user')
 const routeForm = document.getElementById('route_form')
 const routeName = document.getElementById('route_name')
 const routeList = document.querySelector('.route-list')
+
+const mapContainer = document.querySelector(".map-container")
 
 // ***************************************************
 // * toggle hide class to handle clicks on page
@@ -111,6 +114,29 @@ const handleUserSubmit = async function (event) {
   }
 }
 
+const handleUserLogOut = async function(event){
+const userObject = {
+  user: model.state.user,
+  token: model.state.token
+}
+  try {
+    event.preventDefault()
+    // *log out user form model
+    await model.logOutUser(userObject)
+    // * log out user from view
+    userView.logOutUser(model.state.message)
+    
+    mapView.removeMap()
+    userCredentialsBtns.classList.toggle('hide')
+    logOutBtn.classList.toggle('hide')
+
+
+
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // const handleRouteSubmit = async function (event) {
 //   event.preventDefault()
 
@@ -158,6 +184,8 @@ userCredentialsBtns.addEventListener('click', showUserForm)
 cancelSubmitUser.addEventListener('click', hideUserForm)
 
 userForm.addEventListener('submit', handleUserSubmit)
+
+logOutBtn.addEventListener('click', handleUserLogOut)
 
 // routeForm.addEventListener('submit', handleRouteSubmit)
 // btnSignin.addEventListener('click', toggleHideTwo)

@@ -98,7 +98,7 @@ const handleUserSubmit = async function (event) {
     await model.loadUser(userObject, action)
 
     if (model.state.token) {
-      userView.render(model.state.user)
+      userView.render(model.state)
 
       event.target.reset()
       // !call something to load map with current user navigation
@@ -127,7 +127,7 @@ const handleUserLogOut = async function(event){
     userView.logOutUser(model.state.message)
 
     mapView.removeMap()
-    
+
     userCredentialsBtns.classList.toggle('hide')
     logOutBtn.classList.toggle('hide')
 

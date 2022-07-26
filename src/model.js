@@ -31,9 +31,11 @@ export const loadUser = async function (userObject, action) {
 
     const { user } = data.data
     const { token } = data.data
+    const { message } = data.data
 
     state.user = Object.assign({}, user)
     state.token = token
+    state.message = message
   } catch (error) {
     alert(error.message)
   }

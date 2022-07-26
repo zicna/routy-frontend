@@ -2,6 +2,7 @@
 // import { state } from './model.js'
 
 const credentials = document.querySelector(".credentials")
+const messageContainer = document.querySelector(".message-container")
 
 class UserView{
     _data;
@@ -16,6 +17,11 @@ class UserView{
             ${this._data.email}
         </p>
         `
+    }
+
+    logOutUser(message){
+        credentials.innerHTML= ``
+        messageContainer.innerHTML = `${message}`
     }
 
 }

@@ -1,3 +1,15 @@
+/* *semanitic HTML elements */
+.header{
+  height: 20px;
+  background-color: aquamarine;
+}
+
+.footer{
+  height: 20px;
+  background-color: aquamarine;
+
+}
+
 /* ********************************************** */
 /* * non specific classes */
 .show{
@@ -15,6 +27,11 @@
   width: 500px;
   height: 500px;
   background-color: aquamarine;
+}
+
+.message-container{
+  height: 30px;
+  background-color: lightcyan;
 }
 
 /* ********************************************** */

@@ -127,6 +127,7 @@ const handleUserLogOut = async function(event){
     userView.logOutUser(model.state.message)
 
     mapView.removeMap()
+    
     userCredentialsBtns.classList.toggle('hide')
     logOutBtn.classList.toggle('hide')
 

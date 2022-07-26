@@ -3,6 +3,7 @@ const mapContainer = document.querySelector('.map-container')
 class MapView {
   #long
   #lat
+  #map
   render() {
     this.#getLocation()
   }
@@ -39,14 +40,14 @@ class MapView {
   #loadMap() {
     const coors = [this.#lat, this.#long]
     const zoomLevel = 10
-    const map = L.map(mapContainer).setView(coors, zoomLevel)
+    this.#map = L.map(mapContainer).setView(coors, zoomLevel)
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map)
+    }).addTo(this.#map)
 
-    map.on('click', this.#showPinForm.bind(this)
+    this.#map.on('click', this.#showPinForm.bind(this)
     // function (mapEvent) {
     //   const { lat, lng } = mapEvent.latlng
     //   L.marker([lat, lng])
@@ -68,6 +69,12 @@ class MapView {
 
   #showPinForm(mapEvent) {
     
+  }
+  removeMap(){
+    if(this.#map && this.#map.remove){
+      this.#map.off()
+      this.#map.remove()
+    }
   }
 }
 

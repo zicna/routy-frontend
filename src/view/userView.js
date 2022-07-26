@@ -2,6 +2,7 @@
 // import { state } from './model.js'
 
 const credentials = document.querySelector(".credentials")
+const messageContainer = document.querySelector(".message-container")
 
 class UserView{
     _data;
@@ -11,11 +12,25 @@ class UserView{
         this.generateMarkup()
     }
     generateMarkup(){
+        messageContainer.innerHTML = `${this._data.message}`
         credentials.innerHTML = `
         <p>
-            ${this._data.email}
+            ${this._data.user.email}
         </p>
         `
+        this.#clearMsgContainer()
+    }
+    
+    logOutUser(message){
+        credentials.innerHTML= ``
+        messageContainer.innerHTML = `${message}`
+        this.#clearMsgContainer()
+    }
+
+    #clearMsgContainer(){
+        setTimeout(()=>{
+            messageContainer.innerHTML = ``
+        }, 3000)
     }
 
 }

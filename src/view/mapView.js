@@ -1,4 +1,7 @@
 const mapContainer = document.querySelector('.map-container')
+const markerForm = document.getElementById('marker_form')
+const markerLatitude = document.getElementById('marker_latitude')
+const markerLongitude = document.getElementById('marker_longitude')
 
 class MapView {
   #long
@@ -20,7 +23,7 @@ class MapView {
     this.#lat = position.coords.latitude
     this.#long = position.coords.longitude
 
-   this.#loadMap()
+    this.#loadMap()
   }
   #errorCallback(error) {
     if (error.code == 1) {
@@ -47,32 +50,39 @@ class MapView {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map)
 
-    this.#map.on('click', this.#showPinForm.bind(this)
-    // function (mapEvent) {
-    //   const { lat, lng } = mapEvent.latlng
-    //   L.marker([lat, lng])
-    //     .addTo(map)
-    //     .bindPopup(
-    //       L.popup({
-    //         maxWidtht: 250,
-    //         minWidth: 100,
-    //         autoClose: false,
-    //         closeOnClick: false,
-    //         className: 'popup',
-    //       })
-    //     )
-    //     .setPopupContent('Workout')
-    //     .openPopup()
-    // }
+    this.#map.on(
+      'click',
+      this.#showMarkerForm.bind(this)
+      // function (mapEvent) {
+      //   const { lat, lng } = mapEvent.latlng
+      //   L.marker([lat, lng])
+      //     .addTo(map)
+      //     .bindPopup(
+      //       L.popup({
+      //         maxWidtht: 250,
+      //         minWidth: 100,
+      //         autoClose: false,
+      //         closeOnClick: false,
+      //         className: 'popup',
+      //       })
+      //     )
+      //     .setPopupContent('Workout')
+      //     .openPopup()
+      // }
     )
   }
 
-  #showPinForm(mapEvent) {
-    console.dir(mapEvent)
-    console.log("pin form should emerge")
+  #showMarkerForm(mapEvent) {
+    markerForm.classList.toggle('hide')
+    this.#setLatAndLong(mapEvent.latlng)
   }
-  removeMap(){
-    if(this.#map && this.#map.remove){
+
+  #setLatAndLong({lat, lng}) {
+    markerLatitude.value = lat
+    markerLongitude.value = lng
+  }
+  removeMap() {
+    if (this.#map && this.#map.remove) {
       this.#map.off()
       this.#map.remove()
     }

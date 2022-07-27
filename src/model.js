@@ -30,15 +30,12 @@ export const loadUser = async function (userObject, action) {
 
     const data = await response.json()
     if (!response.ok) throw new Error(`${data.message}`)
-    // debugger
+    
     const { user } = data.data
     const { token } = data.data
     const { message } = data.data
     const { userMarkers } = data.data
 
-    // state.user = Object.assign({}, user)
-    // state.token = token
-    // state.message = message
     state = {
       user: user,
       userMarkers: userMarkers,
@@ -115,62 +112,7 @@ export const deleteMarker = async function (markerId) {
     state.userMarkers = state.userMarkers.filter(
       (marker) => marker.id != delMarkerId
     )
-    // debugger
   } catch (error) {
     console.log(error)
   }
 }
-
-// export const createRoute = async function (dataObject) {
-//   try {
-//     const token = state.token
-
-//     // ! when sending body along with token headers must look as line 86. ans 87.
-//     const response = await fetch('http://localhost:3000/routes', {
-//       method: 'POST',
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(dataObject),
-//     })
-//     const data = await response.json()
-
-//     //! guard clause
-//     if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
-//     const { user } = data.data
-
-//     state.userRoutes.push({ id: user.route_id, name: user.route_name })
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
-// export const deleteRoute = async function (dataObject) {
-//   try {
-//     const token = state.token
-//     const response = await fetch(
-//       `http://localhost:3000/routes/${dataObject.user.route_id}`,
-//       {
-//         method: 'DELETE',
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(dataObject),
-//       }
-//     )
-
-//     const data = await response.json()
-//     // ! quard clause
-//     if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
-
-//     const { user } = data.data
-
-//     state.userRoutes = state.userRoutes.filter(
-//       (route) => route.id != user.route_id
-//     )
-//   } catch (error) {
-//     alert(error)
-//   }
-// }

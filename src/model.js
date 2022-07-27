@@ -1,6 +1,6 @@
 export let state = {
   user: {},
-  userRoutes: [],
+  userMarkers: [],
   token: '',
   message: '',
 }
@@ -8,11 +8,13 @@ export let state = {
 export const resetState = () => {
   state = {
     user: {},
-    userRoutes: [],
+    userMarkers: [],
     token: '',
     message: '',
   }
 }
+// * creating deep copy of state
+export const copyState = () => JSON.parse(JSON.stringify(state))
 
 // ! loadUser is NOT a pure function since it is manipulating state
 export const loadUser = async function (userObject, action) {
@@ -61,56 +63,84 @@ export const logOutUser = async function () {
   }
 }
 
-export const createRoute = async function (dataObject) {
+export const createMarker = async function (object) {
   try {
     const token = state.token
-
-    // ! when sending body along with token headers must look as line 86. ans 87.
-    const response = await fetch('http://localhost:3000/routes', {
+    const response = await fetch('http://localhost:3000/markers', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(dataObject),
+      body: JSON.stringify(object),
     })
+
     const data = await response.json()
 
-    //! guard clause
-    if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
-    const { user } = data.data
-
-    state.userRoutes.push({ id: user.route_id, name: user.route_name })
+    if (!response.ok) {
+      throw new Error(`${data.message}, ${data.status}`)
+    }
+    const {marker} = data.data.user
+    // ! ERROR returned value after pushing into array => new array length
+    // const userMarkers = [...state.userMarkers].push(marker)
+    
+    state = copyState()
+    state.userMarkers.push(marker)
   } catch (error) {
     console.log(error)
   }
 }
 
-export const deleteRoute = async function (dataObject) {
-  try {
-    const token = state.token
-    const response = await fetch(
-      `http://localhost:3000/routes/${dataObject.user.route_id}`,
-      {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataObject),
-      }
-    )
+// export const createRoute = async function (dataObject) {
+//   try {
+//     const token = state.token
 
-    const data = await response.json()
-    // ! quard clause
-    if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
+//     // ! when sending body along with token headers must look as line 86. ans 87.
+//     const response = await fetch('http://localhost:3000/routes', {
+//       method: 'POST',
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify(dataObject),
+//     })
+//     const data = await response.json()
 
-    const { user } = data.data
+//     //! guard clause
+//     if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
+//     const { user } = data.data
 
-    state.userRoutes = state.userRoutes.filter(
-      (route) => route.id != user.route_id
-    )
-  } catch (error) {
-    alert(error)
-  }
-}
+//     state.userRoutes.push({ id: user.route_id, name: user.route_name })
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+// export const deleteRoute = async function (dataObject) {
+//   try {
+//     const token = state.token
+//     const response = await fetch(
+//       `http://localhost:3000/routes/${dataObject.user.route_id}`,
+//       {
+//         method: 'DELETE',
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(dataObject),
+//       }
+//     )
+
+//     const data = await response.json()
+//     // ! quard clause
+//     if (!response.ok) throw new Error(`${data.message}, ${data.status}`)
+
+//     const { user } = data.data
+
+//     state.userRoutes = state.userRoutes.filter(
+//       (route) => route.id != user.route_id
+//     )
+//   } catch (error) {
+//     alert(error)
+//   }
+// }

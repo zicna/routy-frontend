@@ -25,8 +25,9 @@ const formPasswordConfirmation = document.querySelector(
 )
 const cancelSubmitUser = document.getElementById('cancel_submit_user')
 const userLogout = document.getElementById('logout_user')
-//* marker form and inputs
+//* marker form, inputs, and button
 const markerForm = document.getElementById('marker_form')
+const markerBtnCancel = document.getElementById('marker_cancel')
 const markerName = document.getElementById('marker_name')
 const markerCategory = document.getElementById('marker_category')
 const markerDescription = document.getElementById('marker_description')
@@ -146,6 +147,12 @@ const handleMarkerSubmit = async function (event) {
   }
 }
 
+const handleCancelMarker = function(){
+  markerForm.reset()
+  markerColor.value = '#000000'
+  markerForm.classList.toggle('hide')
+}
+
 // * Event Listeners
 // *****************************************************************
 userCredentialsBtns.addEventListener('click', showUserForm)
@@ -156,5 +163,6 @@ userForm.addEventListener('submit', handleUserSubmit)
 logOutBtn.addEventListener('click', handleUserLogOut)
 
 markerForm.addEventListener('submit', handleMarkerSubmit)
+markerBtnCancel.addEventListener('click', handleCancelMarker)
 
 // *****************************************************************

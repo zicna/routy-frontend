@@ -115,7 +115,9 @@ const handleUserLogOut = async function (event) {
     // * log out user from view
     userView.logOutUser(model.state.message)
 
+    markerView.clear()
     mapView.removeMap()
+
 
     userCredentialsBtns.classList.toggle('hide')
     logOutBtn.classList.toggle('hide')
@@ -156,7 +158,6 @@ const handleCancelMarker = function(){
 }
 
 const handleMarkerListClick = async function(event){
-  // console.log("hellooooo")
   if(!event.target.classList.contains("btn")) return 
   if(event.target.classList.contains("btn-delete-marker")){
     const markerId = event.target.parentElement.dataset.markerId

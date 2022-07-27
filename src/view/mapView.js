@@ -53,22 +53,6 @@ class MapView {
     this.#map.on(
       'click',
       this.#showMarkerForm.bind(this)
-      // function (mapEvent) {
-      //   const { lat, lng } = mapEvent.latlng
-      //   L.marker([lat, lng])
-      //     .addTo(map)
-      //     .bindPopup(
-      //       L.popup({
-      //         maxWidtht: 250,
-      //         minWidth: 100,
-      //         autoClose: false,
-      //         closeOnClick: false,
-      //         className: 'popup',
-      //       })
-      //     )
-      //     .setPopupContent('Workout')
-      //     .openPopup()
-      // }
     )
   }
 

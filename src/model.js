@@ -98,6 +98,29 @@ export const createMarker = async function (object) {
   }
 }
 
+export const deleteMarker = async function (markerId) {
+  try {
+    const response = await fetch(`http://localhost:3000/markers/${markerId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${state.token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const data = await response.json()
+    if (!response.ok) throw new Error(`${data.message}`)
+    const delMarkerId = data.data.marker.id
+    state = copyState()
+    state.userMarkers = state.userMarkers.filter(
+      (marker) => marker.id != delMarkerId
+    )
+    // debugger
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 // export const createRoute = async function (dataObject) {
 //   try {
 //     const token = state.token

@@ -68,7 +68,8 @@ class MapView {
   }
 
   #showPinForm(mapEvent) {
-    
+    console.dir(mapEvent)
+    console.log("pin form should emerge")
   }
   removeMap(){
     if(this.#map && this.#map.remove){

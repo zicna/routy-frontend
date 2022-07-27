@@ -20,7 +20,7 @@ class MapView {
     this.#lat = position.coords.latitude
     this.#long = position.coords.longitude
 
-    this.#loadMap()
+   this.#loadMap()
   }
   #errorCallback(error) {
     if (error.code == 1) {

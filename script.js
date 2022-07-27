@@ -41,13 +41,14 @@ const mapContainer = document.querySelector(".map-container")
 
 const showUserForm = (event) => {
   if (event.target.id == 'user-credentials-btns') return
-  // debugger
+
   if (event.target.id == 'btn_sign_up') {
     userForm.dataset.action = 'signup'
     userForm.classList.toggle('hide')
     userCredentialsBtns.classList.toggle('hide')
     return
   }
+
   if (event.target.id == 'btn_login') {
     userForm.dataset.action = 'login'
     userForm.classList.toggle('hide')

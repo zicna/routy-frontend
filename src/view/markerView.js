@@ -29,7 +29,7 @@ class MarkerView {
                 <p>${marker.name}</p>
                 Category: <span>${marker.category}</span>
                 <p>Description: ${marker.description}</p> 
-                <button class="btn btn-delete">X</button>
+                <button class="btn btn-delete-marker">X</button>
                 <button class="btn btn-load-marker">L</button>
             `
     markerList.appendChild(li)

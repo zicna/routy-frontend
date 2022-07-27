@@ -156,6 +156,7 @@ const handleCancelMarker = function(){
 }
 
 const handleMarkerListClick = async function(event){
+  console.log("hellooooo")
   if(!event.target.classList.contains("btn")) return 
   if(event.target.classList.contains("btn-delete-marker")){
     const markerId = event.target.parentElement.dataset.markerId

@@ -14,8 +14,7 @@ import mapView from './src/view/mapView.js'
 
 const userCredentialsBtns = document.getElementById('user-credentials-btns')
 
-const logOutBtn = document.getElementById("logout_user")
-
+const logOutBtn = document.getElementById('logout_user')
 
 //* user form
 const userForm = document.getElementById('user_form')
@@ -26,9 +25,16 @@ const formPasswordConfirmation = document.querySelector(
 )
 const cancelSubmitUser = document.getElementById('cancel_submit_user')
 const userLogout = document.getElementById('logout_user')
-//* marker form and buttons
-
-const mapContainer = document.querySelector(".map-container")
+//* marker form and inputs
+const markerForm = document.getElementById('marker_form')
+const markerName = document.getElementById('marker_name')
+const markerCategory = document.getElementById('marker_category')
+const markerDescription = document.getElementById('marker_description')
+const markerColor = document.getElementById('marker_color')
+const markerLatitude = document.getElementById('marker_latitude')
+const markerLongitude = document.getElementById('marker_longitude')
+// * map
+const mapContainer = document.querySelector('.map-container')
 
 // ***************************************************
 // * toggle hide class to handle clicks on page
@@ -97,7 +103,7 @@ const handleUserSubmit = async function (event) {
   }
 }
 
-const handleUserLogOut = async function(event){
+const handleUserLogOut = async function (event) {
   try {
     // *log out user form model
     await model.logOutUser()
@@ -108,7 +114,27 @@ const handleUserLogOut = async function(event){
 
     userCredentialsBtns.classList.toggle('hide')
     logOutBtn.classList.toggle('hide')
+  } catch (error) {
+    console.log(error)
+  }
+}
 
+const handleMarkerSubmit = async function (event) {
+  event.preventDefault()
+  const markerObject = {
+    marker: {
+      name: markerName.value,
+      category: markerCategory.value,
+      description: markerDescription.value,
+      color: markerColor.value,
+      latitude: markerLatitude.value,
+      longitude: markerLongitude.value,
+    },
+  }
+
+  try {
+    await model.createMarker(markerObject)
+    debugger
   } catch (error) {
     console.log(error)
   }
@@ -123,5 +149,6 @@ userForm.addEventListener('submit', handleUserSubmit)
 
 logOutBtn.addEventListener('click', handleUserLogOut)
 
-// *****************************************************************
+markerForm.addEventListener('submit', handleMarkerSubmit)
 
+// *****************************************************************

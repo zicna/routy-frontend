@@ -30,14 +30,21 @@ export const loadUser = async function (userObject, action) {
 
     const data = await response.json()
     if (!response.ok) throw new Error(`${data.message}`)
-
+    // debugger
     const { user } = data.data
     const { token } = data.data
     const { message } = data.data
+    const { userMarkers } = data.data
 
-    state.user = Object.assign({}, user)
-    state.token = token
-    state.message = message
+    // state.user = Object.assign({}, user)
+    // state.token = token
+    // state.message = message
+    state = {
+      user: user,
+      userMarkers: userMarkers,
+      token: token,
+      message: message,
+    }
   } catch (error) {
     alert(error.message)
   }
@@ -80,10 +87,10 @@ export const createMarker = async function (object) {
     if (!response.ok) {
       throw new Error(`${data.message}, ${data.status}`)
     }
-    const {marker} = data.data.user
+    const { marker } = data.data.user
     // ! ERROR returned value after pushing into array => new array length
     // const userMarkers = [...state.userMarkers].push(marker)
-    
+
     state = copyState()
     state.userMarkers.push(marker)
   } catch (error) {

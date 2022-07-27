@@ -77,7 +77,7 @@ class MapView {
     this.#setLatAndLong(mapEvent.latlng)
   }
 
-  #setLatAndLong({lat, lng}) {
+  #setLatAndLong({ lat, lng }) {
     markerLatitude.value = lat
     markerLongitude.value = lng
   }
@@ -86,6 +86,23 @@ class MapView {
       this.#map.off()
       this.#map.remove()
     }
+  }
+
+  loadMarker(markerObject) {
+   const coors = [markerObject.latitude, markerObject.longitude]
+    L.marker(coors)
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidtht: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: 'popup',
+        })
+      )
+      .setPopupContent(`${markerObject.name}`)
+      .openPopup()
   }
 }
 

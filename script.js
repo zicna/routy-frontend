@@ -156,12 +156,19 @@ const handleCancelMarker = function(){
 }
 
 const handleMarkerListClick = async function(event){
-  console.log("hellooooo")
+  // console.log("hellooooo")
   if(!event.target.classList.contains("btn")) return 
   if(event.target.classList.contains("btn-delete-marker")){
     const markerId = event.target.parentElement.dataset.markerId
     markerView.removeMarker(markerId)
     await model.deleteMarker(markerId)
+    return 
+  }
+  if(event.target.classList.contains("btn-load-marker")){
+    const markerId = event.target.parentElement.dataset.markerId
+    const markerObject = model.state.userMarkers.filter(marker => marker.id == markerId)[0]
+
+    mapView.loadMarker(markerObject)
   }
 
 }

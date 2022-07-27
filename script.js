@@ -1,8 +1,8 @@
-// // ! HTML id's naming convention snake_case
+// * HTML id's naming convention snake_case
 // import User from './modules/user.js'
 // import App from './modules/app.js'
 
-// // ! importing from MVC architecure
+// * importing from MVC architecure
 import * as model from './src/model.js'
 import userView from './src/view/userView.js'
 import routeView from './src/view/routeView.js'
@@ -15,10 +15,8 @@ import mapView from './src/view/mapView.js'
 const userCredentialsBtns = document.getElementById('user-credentials-btns')
 
 const logOutBtn = document.getElementById("logout_user")
-const btnSignIn = document.getElementById('btn_sign_in')
-const btnLogin = document.getElementById('btn-login')
 
-const btnAddRoute = document.getElementById('add_route')
+
 //* user form
 const userForm = document.getElementById('user_form')
 const formEmail = document.querySelector('#email')
@@ -26,13 +24,9 @@ const formPassword = document.querySelector('#password')
 const formPasswordConfirmation = document.querySelector(
   '#password_confirmation'
 )
-const submitUser = document.getElementById('submit_user')
 const cancelSubmitUser = document.getElementById('cancel_submit_user')
 const userLogout = document.getElementById('logout_user')
-//* route form and buttons
-const routeForm = document.getElementById('route_form')
-const routeName = document.getElementById('route_name')
-const routeList = document.querySelector('.route-list')
+//* marker form and buttons
 
 const mapContainer = document.querySelector(".map-container")
 
@@ -68,20 +62,6 @@ const hideUserFormShowLogout = () => {
   userForm.classList.toggle('hide')
   userLogout.classList.toggle('hide')
 }
-// const toggleHideOne = () => {
-//   btnAddRoute.classList.toggle('hide')
-//   routeForm.classList.toggle('hide')
-// }
-// const toggleHideTwo = () => {
-//   form.reset()
-//   btnSignin.classList.toggle('hide')
-//   form.classList.toggle('hide')
-// }
-
-// const toggleHideThree = () => {
-//   btnAddRoute.classList.toggle('hide')
-//   form.classList.toggle('hide')
-// }
 // ***************************************************
 // * AJAX requests
 
@@ -118,13 +98,7 @@ const handleUserSubmit = async function (event) {
 }
 
 const handleUserLogOut = async function(event){
-// const userObject = {
-//   user: model.state.user,
-//   token: model.state.token
-// }
   try {
-
-    // event.preventDefault()
     // *log out user form model
     await model.logOutUser()
     // * log out user from view
@@ -132,60 +106,16 @@ const handleUserLogOut = async function(event){
 
     mapView.removeMap()
 
-
     userCredentialsBtns.classList.toggle('hide')
     logOutBtn.classList.toggle('hide')
-
-
 
   } catch (error) {
     console.log(error)
   }
 }
 
-// const handleRouteSubmit = async function (event) {
-//   event.preventDefault()
-
-//   const dataObject = {
-//     user: { route_name: routeName.value },
-//   }
-//   try {
-//     // ! maybe here we can just render new route name (trusting backend will work)
-//     await model.createRoute(dataObject)
-//     routeView.render(model.state.userRoutes)
-//   } catch (error) {
-//     alert(error)
-//   } finally {
-//     toggleHideOne()
-//   }
-//   event.target.reset()
-// }
-
-// // * using event prapagation to handle clicking on delete btn
-// // ! not async callback because we will have positive approach=>
-// // !remove form UI and trust it will be removed from backend as well
-// const handleDeleteRouteClick = function (event) {
-//   event.preventDefault()
-//   // ! quard clause if click event happens on ul outside of button
-//   if (event.target.classList.contains('btn-delete')) {
-//     const route = {
-//       user: { route_id: event.target.parentElement.dataset.routeId },
-//     }
-
-//     try {
-//       event.target.parentElement.remove()
-//       model.deleteRoute(route)
-//     } catch (error) {
-//       alert(error)
-//     }
-//   } else if (event.target.classList.contains('btn-load-map')) {
-//     // mapView.render()
-
-//   }
-// }
-
-// // * Event Listeners
-// // *****************************************************************
+// * Event Listeners
+// *****************************************************************
 userCredentialsBtns.addEventListener('click', showUserForm)
 cancelSubmitUser.addEventListener('click', hideUserForm)
 
@@ -193,9 +123,5 @@ userForm.addEventListener('submit', handleUserSubmit)
 
 logOutBtn.addEventListener('click', handleUserLogOut)
 
-// routeForm.addEventListener('submit', handleRouteSubmit)
-// btnSignin.addEventListener('click', toggleHideTwo)
-// btnAddRoute.addEventListener('click', toggleHideOne)
-// routeList.addEventListener('click', handleDeleteRouteClick)
-// // *****************************************************************
+// *****************************************************************
 

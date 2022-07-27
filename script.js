@@ -28,6 +28,8 @@ const userLogout = document.getElementById('logout_user')
 //* marker form, inputs, and button
 const markerForm = document.getElementById('marker_form')
 const markerBtnCancel = document.getElementById('marker_cancel')
+const markerList = document.querySelector(".marker-list")
+
 const markerName = document.getElementById('marker_name')
 const markerCategory = document.getElementById('marker_category')
 const markerDescription = document.getElementById('marker_description')
@@ -153,6 +155,16 @@ const handleCancelMarker = function(){
   markerForm.classList.toggle('hide')
 }
 
+const handleMarkerListClick = async function(event){
+  if(!event.target.classList.contains("btn")) return 
+  if(event.target.classList.contains("btn-delete-marker")){
+    const markerId = event.target.parentElement.dataset.markerId
+    markerView.removeMarker(markerId)
+    await model.deleteMarker(markerId)
+  }
+
+}
+
 // * Event Listeners
 // *****************************************************************
 userCredentialsBtns.addEventListener('click', showUserForm)
@@ -164,5 +176,5 @@ logOutBtn.addEventListener('click', handleUserLogOut)
 
 markerForm.addEventListener('submit', handleMarkerSubmit)
 markerBtnCancel.addEventListener('click', handleCancelMarker)
-
+markerList.addEventListener('click', handleMarkerListClick)
 // *****************************************************************

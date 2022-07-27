@@ -5,8 +5,8 @@
 // * importing from MVC architecure
 import * as model from './src/model.js'
 import userView from './src/view/userView.js'
-import routeView from './src/view/routeView.js'
 import mapView from './src/view/mapView.js'
+import markerView from './src/view/markerView.js'
 
 // * Application Architecture
 // ***************************************************
@@ -93,6 +93,8 @@ const handleUserSubmit = async function (event) {
       // !call something to load map with current user navigation
       mapView.render()
 
+      markerView.render(model.state.userMarkers)
+
       hideUserFormShowLogout()
       return
     }
@@ -133,10 +135,14 @@ const handleMarkerSubmit = async function (event) {
   }
 
   try {
-    await model.createMarker(markerObject)
-    debugger
+      await model.createMarker(markerObject)
+      markerView.addNewMarker(model.state.userMarkers.slice(-1)[0])
   } catch (error) {
     console.log(error)
+  } finally {
+    markerForm.reset()
+    markerColor.value = '#000000'
+    markerForm.classList.toggle('hide')
   }
 }
 

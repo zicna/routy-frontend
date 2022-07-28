@@ -24,86 +24,103 @@
   <body>
     <header class="header">This is header</header>
     <div class="message-container">This is message container</div>
-    <div class="btn-container" id="user-credentials-btns">
-      <button id="btn_sign_up">Register</button>
-      <button id="btn_login">Login</button>
-    </div>
-    <div class="credentials"></div>
-    <div class="routes-container">
-      <ul class="marker-list"></ul>
-    </div>
-    <div class="form-container">
-      <form class="user-form hide" id="user_form" action="#">
-        <div>
-          <input
-            type="text"
-            placeholder="example@example.com"
-            id="email"
-            required
-          />
-          <label for="">email</label>
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="********"
-            id="password"
-            required
-          />
-          <label for="">password</label>
-        </div>
-        <div>
-          <input
-            type="password"
-            placeholder="********"
-            id="password_confirmation"
-            required
-          />
-          <label for=""> password confirmation</label>
-        </div>
-        <div>
-          <input type="submit" value="Submit" id="submit_user" />
-          <input type="text" value="Cancel" id="cancel_submit_user" />
-        </div>
-      </form>
-    </div>
-    <button class="hide" id="logout_user">Log Out</button>
-    <div class="form-container">
-      <form action="#" id="marker_form" class="hide">
-        <div>
-          <input type="text" id="marker_name" />
-          <label for="marker_name">Marker Name</label>
-        </div>
-        <div>
-          <input type="text" id="marker_category" />
-          <label for="marker_category">Marker Category</label>
-        </div>
-        <div>
-          <input type="text" id="marker_description" />
-          <label for="marker_description">Marker Description</label>
-        </div>
-        <div>
-          <input type="color" id="marker_color" />
-          <label for="marker_color">Marker color</label>
-        </div>
-        <div>
-          <input type="hidden" id="marker_latitude" />
-        </div>
-        <div>
-          <input type="hidden" id="marker_longitude" />
-        </div>
-        <div>
-          <input type="submit" id="marker_submit" class="btn btn-success" value="Create Marker" />
-        </div>
-        <div>
-          <input type="button" id="marker_cancel" class="btn btn-danger" value="Cancel" />
-        </div>
-      </form>
-      <div class="btn-container">
-        <button class="hide" id="add_route">Add Route</button>
+    <section>
+      <!--! First -->
+      <div class="btn-container" id="user-credentials-btns">
+        <button id="btn_sign_up">Register</button>
+        <button id="btn_login">Login</button>
       </div>
-    </div>
-    <div class="map-container"></div>
+      <!--! Second -->
+      <div class="form-container">
+        <form class="user-form hide" id="user_form" action="#">
+          <div>
+            <input
+              type="text"
+              placeholder="example@example.com"
+              id="email"
+              required
+            />
+            <label for="">email</label>
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="* * * * * * 6 char min"
+              id="password"
+              required
+            />
+            <label for="">password</label>
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="* * * * * * 6 char min"
+              id="password_confirmation"
+              required
+            />
+            <label for=""> password confirmation</label>
+          </div>
+          <div>
+            <input type="submit" value="Submit" id="submit_user" />
+            <input type="text" value="Cancel" id="cancel_submit_user" />
+          </div>
+        </form>
+      </div>
+      <!--! Third-->
+      <div>
+        <div class="credentials"></div>
+        <button class="hide" id="logout_user">Log Out</button>
+      </div>
+
+      <div class="markers-container">
+        <div class="form-container">
+          <form action="#" id="marker_form" class="hide">
+            <div>
+              <input type="text" id="marker_name" />
+              <label for="marker_name">Marker Name</label>
+            </div>
+            <div>
+              <input type="text" id="marker_category" />
+              <label for="marker_category">Marker Category</label>
+            </div>
+            <div>
+              <input type="text" id="marker_description" />
+              <label for="marker_description">Marker Description</label>
+            </div>
+            <div>
+              <input type="color" id="marker_color" />
+              <label for="marker_color">Marker color</label>
+            </div>
+            <div>
+              <input type="hidden" id="marker_latitude" />
+            </div>
+            <div>
+              <input type="hidden" id="marker_longitude" />
+            </div>
+            <div>
+              <input
+                type="submit"
+                id="marker_submit"
+                class="btn btn-success"
+                value="Create Marker"
+              />
+            </div>
+            <div>
+              <input
+                type="button"
+                id="marker_cancel"
+                class="btn btn-danger"
+                value="Cancel"
+              />
+            </div>
+          </form>
+        </div>
+        <ul class="marker-list"></ul>
+      </div>
+    </section>
+    <section>
+      <div class="map-container"></div>
+    </section>
     <footer class="footer">This is footer</footer>
   </body>
 </html>

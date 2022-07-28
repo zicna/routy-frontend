@@ -141,7 +141,7 @@ const handleMarkerSubmit = async function (event) {
 
   try {
       await model.createMarker(markerObject)
-      markerView.addNewMarker(model.state.userMarkers.slice(-1)[0])
+      markerView.addNewMarker(model.state.userMarkers[0])
   } catch (error) {
     console.log(error)
   } finally {

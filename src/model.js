@@ -89,7 +89,7 @@ export const createMarker = async function (object) {
     // const userMarkers = [...state.userMarkers].push(marker)
 
     state = copyState()
-    state.userMarkers.push(marker)
+    state.userMarkers.unshift(marker)
   } catch (error) {
     console.log(error)
   }

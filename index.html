@@ -27,45 +27,49 @@
     <div class="main">
       <section class="section-one">
         <!--! First -->
-        <div class="btn-container" id="user-credentials-btns">
-          <button id="btn_sign_up">Register</button>
-          <button id="btn_login">Login</button>
+        <div class="center">
+          <div class="btn-container" id="user-credentials-btns">
+            <button class="btn" id="btn_sign_up">Register</button>
+            <button class="btn" id="btn_login">Login</button>
+          </div>
         </div>
         <!--! Second -->
         <div class="form-container">
-          <form class="user-form hide" id="user_form" action="#">
-            <div>
-              <input
-                type="text"
-                placeholder="example@example.com"
-                id="email"
-                required
-              />
-              <label for="">email</label>
-            </div>
-            <div>
-              <input
-                type="password"
-                placeholder="* * * * * * 6 char min"
-                id="password"
-                required
-              />
-              <label for="">password</label>
-            </div>
-            <div>
-              <input
-                type="password"
-                placeholder="* * * * * * 6 char min"
-                id="password_confirmation"
-                required
-              />
-              <label for=""> password confirmation</label>
-            </div>
-            <div>
-              <input type="submit" value="Submit" id="submit_user" />
-              <input type="text" value="Cancel" id="cancel_submit_user" />
-            </div>
-          </form>
+          <div class="center">
+            <form class="user-form hide" id="user_form" action="#">
+              <div>
+                <label for="">email</label>
+                <input
+                  type="text"
+                  placeholder="example@example.com"
+                  id="email"
+                  required
+                />
+              </div>
+              <div>
+                <label for="">password</label>
+                <input
+                  type="password"
+                  placeholder="* * * * * * 6 char min"
+                  id="password"
+                  required
+                />
+              </div>
+              <div>
+                <label for=""> password confirmation</label>
+                <input
+                  type="password"
+                  placeholder="* * * * * * 6 char min"
+                  id="password_confirmation"
+                  required
+                />
+              </div>
+              <div>
+                <input class="btn btn-success" type="submit" value="Submit" id="submit_user" />
+                <input class="btn btn-cancel" type="text" value="Cancel" id="cancel_submit_user" />
+              </div>
+            </form>
+          </div>
         </div>
         <!--! Third-->
         <div>
@@ -119,7 +123,9 @@
         </div>
       </section>
       <section class="section-two">
-        <div class="map-container"></div>
+        <div class="map-container">
+          <img src="./images/map with pins.jpeg" alt="USA map with pins">
+        </div>
       </section>
     </div>
     <footer class="footer">

@@ -14,6 +14,7 @@ class UserView{
     generateMarkup(){
         credentials.innerHTML = `
         <p>
+        <ion-icon name="person-outline"></ion-icon>
             ${this._data.user.email}
         </p>
         `

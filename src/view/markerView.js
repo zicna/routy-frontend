@@ -1,4 +1,6 @@
 const markerList = document.querySelector('.marker-list')
+const markerMsgContainer = document.getElementById("marker-msg-container")
+
 
 class MarkerView {
   #data
@@ -9,7 +11,7 @@ class MarkerView {
 
   #generateMarkap() {
     if (this.#data.length == 0) {
-      markerList.innerHTML = `
+      markerMsgContainer.innerHTML = `
       <p>
       Please wait for the map to be loaded. Click on the map to display the new marker form.
       </p>

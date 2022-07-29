@@ -3,6 +3,7 @@ const markerForm = document.getElementById('marker_form')
 const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
 const markerList = document.querySelector('.marker-list')
+const markerMsgContainer = document.getElementById("marker-msg-container")
 
 import * as helper from '../helpers/viewHelper.js'
 
@@ -60,7 +61,7 @@ class MapView {
   }
 
   #showMarkerForm(mapEvent) {
-    helper.clearContainer(markerList)
+    helper.clearContainer(markerMsgContainer)
     markerForm.classList.toggle('hide')
     this.#setLatAndLong(mapEvent.latlng)
   }

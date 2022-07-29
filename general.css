@@ -1,0 +1,73 @@
+/* ! SPACING SYSTEM (px) */
+/* 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
+
+/*! FONT SIZE SYSTEM (px) */
+/* 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
+
+/* ! whitespace (padding and margins) */
+/* 2 / 4 / 8 / 12 / 16 / 32 / 64 / 128 / */
+
+/* ! shadows */
+
+/* ! Font weights */
+/* 
+default: 400
+Medium: 500
+Semi-bold: 600
+Bold: 700
+*/
+/* ! Line heights */
+/* 
+default: 1
+Small: 1.05
+Paragraph default: 1.6
+*/
+
+/* ! border-radius */
+/* 
+default: 9px 
+medium: 12px
+*/
+/* ! icons: ionicons */
+/* ! colors */
+
+/* 
+#333
+
+#fdf2e9
+#fae4d1
+#f9e0ca
+#f8d8bd
+#f3bf91
+
+ */
+/* 
+ --gray-l-l: #e6e6e6;
+ --gray-l: #495057;
+ --gray: #343a40;
+ --main-or: #e67e22;
+ --main-or-dr: #cf711f;
+ --main: #087f5b;
+ --main-dr: #064935;
+ --main-lg: #96f2d7; 
+ */
+
+/* ! whole document reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1;
+    font-weight: 400;
+  } */
+  
+  html {
+    scroll-behavior: smooth;
+    /*! original font-size is 16px and 62.5% of that is 10px; this way we set 1rem = 10px */
+    font-size: 62.5%;
+  }
+ 

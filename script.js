@@ -1,7 +1,3 @@
-// * HTML id's naming convention snake_case
-// import User from './modules/user.js'
-// import App from './modules/app.js'
-
 // * importing from MVC architecure
 import * as model from './src/model.js'
 import userView from './src/view/userView.js'
@@ -180,14 +176,6 @@ const handleMarkerListClick = async function (event) {
   }
   helper.addContentTo(model.state.message, messageContainer)
   helper.clearContainer(messageContainer)
-}
-
-// ! helpers
-
-const clearMsgContainer = () => {
-  setTimeout(() => {
-    messageContainer.innerHTML = ``
-  }, 3000)
 }
 
 // * Event Listeners

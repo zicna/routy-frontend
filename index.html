@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Routy App</title>
-    <link rel="stylesheet" href="general.css">
+    <link rel="stylesheet" href="general.css" />
     <link rel="stylesheet" href="index.css" />
     <!--! leaflet library -->
     <link
@@ -30,6 +30,10 @@
         <!--! First -->
         <div class="center">
           <div class="btn-container" id="user-credentials-btns">
+            <p>
+              Please <span class="strong">Register</span> for new accout or <span class="strong">Login</span> if you already have one.
+              Thank you!
+            </p>
             <button class="btn" id="btn_sign_up">Register</button>
             <button class="btn" id="btn_login">Login</button>
           </div>
@@ -41,33 +45,49 @@
               <div>
                 <label for="">email</label>
                 <input
-                  type="text"
+                  type="email"
                   placeholder="example@example.com"
                   id="email"
+                  size="30"
                   required
+                  autofocus
                 />
               </div>
               <div>
                 <label for="">password</label>
                 <input
                   type="password"
-                  placeholder="* * * * * * 6 char min"
+                  placeholder="****** 6 char min"
                   id="password"
                   required
+                  minlength="6"
+                  size="30"
                 />
               </div>
               <div>
                 <label for=""> password confirmation</label>
                 <input
                   type="password"
-                  placeholder="* * * * * * 6 char min"
+                  placeholder="****** 6 char min"
                   id="password_confirmation"
+                  size="30"
+                  minlength="6"
                   required
                 />
               </div>
               <div>
-                <input class="btn btn-success" type="submit" value="Submit" id="submit_user" />
-                <input class="btn btn-cancel" type="text" value="Cancel" id="cancel_submit_user" />
+                <input
+                  class="btn btn-success"
+                  type="submit"
+                  value="Submit"
+                  id="submit_user"
+                />
+                <input
+                  class="btn btn-cancel"
+                  type="text"
+                  value="Cancel"
+                  id="cancel_submit_user"
+                />
               </div>
             </form>
           </div>
@@ -125,7 +145,7 @@
       </section>
       <section class="section-two">
         <div class="map-container">
-          <img src="./images/map with pins.jpeg" alt="USA map with pins">
+          <img src="./images/map with pins.jpeg" alt="USA map with pins" />
         </div>
       </section>
     </div>

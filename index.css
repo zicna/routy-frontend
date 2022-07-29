@@ -15,6 +15,10 @@
   justify-content: center;
   text-align: center;
 }
+
+.strong{
+  font-weight: 600;
+}
 /* ********************************************** */
 /* * containers */
 .main{
@@ -52,8 +56,7 @@ section{
 }
 
 .btn-container{
-  /* margin: auto;
-  width: 60%; */
+  margin-top: 4rem;
   
 }
 /* ********************************************** */
@@ -77,6 +80,10 @@ background-color: lightcoral;
 
 .btn-success{
 background-color: rgb(120, 196, 120);
+}
+/* ! just to make it even with submit input */
+#cancel_submit_user{
+  width: 9rem;
 }
 .btn-success:hover{
   color: white;

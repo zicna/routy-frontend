@@ -98,8 +98,56 @@ footer {
   padding-bottom: 1rem;
 }
 
+form {
+  margin-top: 4rem;
+}
+
 label {
   display: block;
   margin-top: 1.2rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+input {
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+input[type='password'] {
+  border: none;
+  border-bottom: 0.1rem solid lightgray;
+  letter-spacing: .4rem;
+  text-align: center;
+}
+input[type="password"]:invalid {
+  border-bottom: 0.2rem solid lightcoral;
+}
+
+input[type="password"]:valid {
+  border-bottom: 0.2rem solid lightgreen;
+}
+input[type='email'] {
+  border: none;
+  border-bottom: 0.1rem solid lightgray;
+}
+
+input[type="email"]:invalid {
+  border-bottom: 0.2rem solid lightcoral;
+}
+input[type="email"]:valid {
+  border-bottom: 0.2rem solid lightgreen;
+}
+input::placeholder {
+  text-align: center;
+}
+input:focus {
+  color: green;
+  font-weight: 500;
+}
+
+
+
+p {
+  font-size: 2rem;
+  line-height: 3rem;
+  margin-bottom: 2.4rem;
 }

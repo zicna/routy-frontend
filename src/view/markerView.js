@@ -1,6 +1,5 @@
 const markerList = document.querySelector('.marker-list')
 
-
 class MarkerView {
   #data
   render(data) {
@@ -9,6 +8,12 @@ class MarkerView {
   }
 
   #generateMarkap() {
+    if (this.#data.length == 0) {
+      markerList.innerHTML = `
+      Please click on map to create new marker
+      `
+      return
+    }
     this.#data.forEach((marker) => {
       const li = document.createElement('li')
       li.dataset.markerId = marker.id

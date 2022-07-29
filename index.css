@@ -1,38 +1,4 @@
 
-/* *semanitic HTML elements, classes */
-body {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-footer{
-  margin-top: auto;
-}
-.header{
-  height: 40px;
-  background-color: aquamarine;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.footer{
-  height: 40px;
-  background-color: lightcyan;
-  text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-label{
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 3px;
-}
-
-
-/* ********************************************** */
 /* * non specific classes */
 .show{
     display: block;
@@ -80,8 +46,8 @@ section{
 
 .message-container{
   text-align: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: lightcyan;
 }
 
@@ -94,11 +60,11 @@ section{
 /* * buttons */
 .btn {
   /* display: block; */
-  margin: 10px;
-  padding: 5px 15px;
+  margin: 1rem;
+  padding: 0.8rem 1.6rem;
   /* color: white; */
   font-weight: 600;
-  border-radius: 5px;
+  border-radius: 0.9rem;
 }
 .btn:hover{
   /* color: white; */

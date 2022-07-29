@@ -54,7 +54,7 @@
                   type="email"
                   placeholder="example@example.com"
                   id="email"
-                  size="30"
+                  size="50"
                   required
                   autofocus
                 />
@@ -92,7 +92,7 @@
                 />
                 <input
                   class="btn btn-cancel"
-                  type="text"
+                  type="button"
                   value="Cancel"
                   id="cancel_submit_user"
                 />
@@ -107,20 +107,19 @@
         </div>
         <!-- !after this one comes when user is loged in -->
         <div class="markers-container">
-          <div class="form-container">
+          <div class="form-container center">
             <form action="#" id="marker_form" class="hide">
               <div>
-                <!-- <label for="marker_name">Name</label> -->
                 <input
                   type="text"
                   id="marker_name"
                   placeholder="marker name"
+                  minlength="3"
                   autofocus
                   required
                 />
               </div>
               <div>
-                <!-- <label for="marker_category">Category</label> -->
                 <input
                   type="text"
                   id="marker_category"
@@ -129,18 +128,14 @@
                 />
               </div>
               <div>
-                <!-- <label for="marker_description">Description</label> -->
                 <input
                   type="text"
                   id="marker_description"
                   placeholder="description"
+                  minlength="10"
                   required
                 />
               </div>
-              <!-- <div>
-                <label for="marker_color">Marker color</label>
-                <input type="color" id="marker_color" />
-              </div> -->
               <input type="hidden" id="marker_latitude" />
               <input type="hidden" id="marker_longitude" />
               <div>
@@ -148,13 +143,13 @@
                   type="submit"
                   id="marker_submit"
                   class="btn btn-success"
-                  value="Create Marker"
+                  value="Create"
                 />
 
                 <input
                   type="button"
                   id="marker_cancel"
-                  class="btn btn-danger"
+                  class="btn btn-cancel"
                   value="Cancel"
                 />
               </div>

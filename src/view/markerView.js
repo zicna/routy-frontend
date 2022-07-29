@@ -10,7 +10,9 @@ class MarkerView {
   #generateMarkap() {
     if (this.#data.length == 0) {
       markerList.innerHTML = `
-      Please click on map to create new marker
+      <p>
+      Please wait for the map to be loaded. Click on the map to display the new marker form.
+      </p>
       `
       return
     }

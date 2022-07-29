@@ -15,7 +15,7 @@ export const resetState = () => {
 }
 // * creating deep copy of state
 export const copyState = () => JSON.parse(JSON.stringify(state))
-
+export const setStateMessage = (msg) => (state.message = msg)
 // ! loadUser is NOT a pure function since it is manipulating state
 export const loadUser = async function (userObject, action) {
   try {
@@ -111,10 +111,12 @@ export const deleteMarker = async function (markerId) {
     const data = await response.json()
     if (!response.ok) throw new Error(`${data.message}`)
     const delMarkerId = data.data.marker.id
+    const { message } = data.data
     state = copyState()
     state.userMarkers = state.userMarkers.filter(
       (marker) => marker.id != delMarkerId
     )
+    state.message = message
   } catch (error) {
     console.log(error)
   }

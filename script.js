@@ -168,16 +168,18 @@ const handleMarkerListClick = async function (event) {
     const markerId = event.target.parentElement.dataset.markerId
     markerView.removeMarker(markerId)
     await model.deleteMarker(markerId)
-    return
   }
   if (event.target.classList.contains('btn-load-marker')) {
     const markerId = event.target.parentElement.dataset.markerId
     const markerObject = model.state.userMarkers.filter(
       (marker) => marker.id == markerId
     )[0]
-
+    // ! we need to reset state.message since this action is not sending AJAX request
+    model.setStateMessage('loading marker ... ')
     mapView.loadMarker(markerObject)
   }
+  helper.addContentTo(model.state.message, messageContainer)
+  helper.clearContainer(messageContainer)
 }
 
 // ! helpers

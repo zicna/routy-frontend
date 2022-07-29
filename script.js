@@ -7,15 +7,13 @@ import * as model from './src/model.js'
 import userView from './src/view/userView.js'
 import mapView from './src/view/mapView.js'
 import markerView from './src/view/markerView.js'
+import * as helper from './src/helpers/viewHelper.js'
 
 // * Application Architecture
 // ***************************************************
 // * buttons
-
 const userCredentialsBtns = document.getElementById('user-credentials-btns')
-
 const logOutBtn = document.getElementById('logout_user')
-
 //* user form
 const userForm = document.getElementById('user_form')
 const formEmail = document.querySelector('#email')
@@ -28,7 +26,7 @@ const userLogout = document.getElementById('logout_user')
 //* marker form, inputs, and button
 const markerForm = document.getElementById('marker_form')
 const markerBtnCancel = document.getElementById('marker_cancel')
-const markerList = document.querySelector(".marker-list")
+const markerList = document.querySelector('.marker-list')
 
 const markerName = document.getElementById('marker_name')
 const markerCategory = document.getElementById('marker_category')
@@ -38,6 +36,8 @@ const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
 // * map
 const mapContainer = document.querySelector('.map-container')
+
+const messageContainer = document.querySelector('.message-container')
 
 // ***************************************************
 // * toggle hide class to handle clicks on page
@@ -95,7 +95,8 @@ const handleUserSubmit = async function (event) {
       event.target.reset()
       // !call something to load map with current user navigation
       mapView.render()
-
+      helper.addContentTo(model.state.message, messageContainer)
+      helper.clearContainer(messageContainer)
       markerView.render(model.state.userMarkers)
 
       hideUserFormShowLogout()
@@ -113,11 +114,12 @@ const handleUserLogOut = async function (event) {
     // *log out user form model
     await model.logOutUser()
     // * log out user from view
-    userView.logOutUser(model.state.message)
+    userView.logOutUser()
+    helper.addContentTo(model.state.message, messageContainer)
+    helper.clearContainer(messageContainer)
 
     markerView.clear()
     mapView.removeMap()
-
 
     userCredentialsBtns.classList.toggle('hide')
     logOutBtn.classList.toggle('hide')
@@ -140,8 +142,11 @@ const handleMarkerSubmit = async function (event) {
   }
 
   try {
-      await model.createMarker(markerObject)
-      markerView.addNewMarker(model.state.userMarkers[0])
+    await model.createMarker(markerObject)
+    markerView.addNewMarker(model.state.userMarkers[0])
+
+    helper.addContentTo(model.state.message, messageContainer)
+    helper.clearContainer(messageContainer)
   } catch (error) {
     console.log(error)
   } finally {
@@ -151,27 +156,36 @@ const handleMarkerSubmit = async function (event) {
   }
 }
 
-const handleCancelMarker = function(){
+const handleCancelMarker = function () {
   markerForm.reset()
   markerColor.value = '#000000'
   markerForm.classList.toggle('hide')
 }
 
-const handleMarkerListClick = async function(event){
-  if(!event.target.classList.contains("btn")) return 
-  if(event.target.classList.contains("btn-delete-marker")){
+const handleMarkerListClick = async function (event) {
+  if (!event.target.classList.contains('btn')) return
+  if (event.target.classList.contains('btn-delete-marker')) {
     const markerId = event.target.parentElement.dataset.markerId
     markerView.removeMarker(markerId)
     await model.deleteMarker(markerId)
-    return 
+    return
   }
-  if(event.target.classList.contains("btn-load-marker")){
+  if (event.target.classList.contains('btn-load-marker')) {
     const markerId = event.target.parentElement.dataset.markerId
-    const markerObject = model.state.userMarkers.filter(marker => marker.id == markerId)[0]
+    const markerObject = model.state.userMarkers.filter(
+      (marker) => marker.id == markerId
+    )[0]
 
     mapView.loadMarker(markerObject)
   }
+}
 
+// ! helpers
+
+const clearMsgContainer = () => {
+  setTimeout(() => {
+    messageContainer.innerHTML = ``
+  }, 3000)
 }
 
 // * Event Listeners

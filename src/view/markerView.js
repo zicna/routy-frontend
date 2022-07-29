@@ -1,5 +1,6 @@
 const markerList = document.querySelector('.marker-list')
 
+
 class MarkerView {
   #data
   render(data) {
@@ -32,7 +33,6 @@ class MarkerView {
                 <button class="btn btn-delete-marker">X</button>
                 <button class="btn btn-load-marker">L</button>
             `
-    // markerList.insertBefore(li, markerList.firstChild)
     markerList.prepend(li)
   }
 

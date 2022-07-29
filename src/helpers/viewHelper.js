@@ -1,9 +1,9 @@
 export const clearContainer = (node) => {
-    setTimeout(() => {
-      node.innerHTML = ``
-    }, 4000)
-  }
+  setTimeout(() => {
+    node.innerHTML = ``
+  }, 3000)
+}
 
-  export const addContentTo = (message, node) => {
-    node.innerHTML = message
-  }
+export const addContentTo = (message, node) => {
+  node.innerHTML = message
+}

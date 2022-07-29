@@ -2,6 +2,9 @@ const mapContainer = document.querySelector('.map-container')
 const markerForm = document.getElementById('marker_form')
 const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
+const markerList = document.querySelector('.marker-list')
+
+import * as helper from '../helpers/viewHelper.js'
 
 class MapView {
   #long
@@ -57,6 +60,7 @@ class MapView {
   }
 
   #showMarkerForm(mapEvent) {
+    helper.clearContainer(markerList)
     markerForm.classList.toggle('hide')
     this.#setLatAndLong(mapEvent.latlng)
   }

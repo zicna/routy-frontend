@@ -7,3 +7,7 @@ export const clearContainer = (node) => {
 export const addContentTo = (message, node) => {
   node.innerHTML = message
 }
+
+export const userName = (email) => {
+    return email.slice(0,email.indexOf("@"))
+}

@@ -3,6 +3,7 @@
 
 const credentials = document.querySelector(".credentials")
 const messageContainer = document.querySelector(".message-container")
+import {userName} from '../helpers/viewHelper.js'
 
 class UserView{
     _data;
@@ -15,7 +16,7 @@ class UserView{
         credentials.innerHTML = `
         <p>
         <ion-icon name="person-outline"></ion-icon>
-            ${this._data.user.email}
+            ${userName(this._data.user.email)}
         </p>
         `
     }

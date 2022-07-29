@@ -113,12 +113,12 @@ label {
   margin-top: 1.2rem;
   margin-bottom: 0.8rem;
 }
-input {
+select, input {
   padding: 0.4rem 0.8rem;
   margin-bottom: 0.8rem;
 }
 
-input[type='password'], input[type='email'], input[type="text"] {
+select, input[type='password'], input[type='email'], input[type="text"] {
   border: none;
   border-bottom: 0.1rem solid lightgray;
   letter-spacing: 0.4rem;
@@ -131,17 +131,6 @@ input[type='password']:invalid, input[type='email']:invalid, input[type="text"]:
 input[type='password']:valid, input[type='email']:valid, input[type='text']:valid  {
   border-bottom: 0.2rem solid lightgreen;
 }
-/* input[type='email'] {
-  border: none;
-  border-bottom: 0.1rem solid rgb(211, 211, 211);
-}
-
-input[type='email']:invalid {
-  border-bottom: 0.2rem solid rgb(240, 128, 128);
-}
-input[type='email']:valid {
-  border-bottom: 0.2rem solid rgb(145, 238, 145);
-} */
 input::placeholder {
   text-align: center;
 }
@@ -149,3 +138,5 @@ input:focus {
   color: green;
   font-weight: 500;
 }
+
+

@@ -1,44 +1,43 @@
-
 /* * non specific classes */
-.show{
-    display: block;
+.show {
+  display: block;
 }
-.hide{
-    display: none;
+.hide {
+  display: none;
 }
-.show-inline{
-    display: inline-block;
+.show-inline {
+  display: inline-block;
 }
 
-.center{
+.center {
   display: flex;
   justify-content: center;
   text-align: center;
 }
 
-.strong{
+.strong {
   font-weight: 600;
 }
 /* ********************************************** */
 /* * containers */
-.main{
-  outline: 1px solid yellow;
+.main {
   display: flex;
+  outline: 1px solid yellow;
   /* gap: 20px; */
   justify-content: space-between;
 }
 
-section{
+section {
   flex: 1 1 auto;
   height: 90vh;
 }
 
-.section-one{
+.section-one {
   max-width: 30%;
   min-height: 80%;
 }
 
-.section-two{
+.section-two {
   max-width: 65%;
   min-height: 80%;
 }
@@ -48,58 +47,58 @@ section{
   background-color: aquamarine;
 }
 
-.message-container{
+.message-container {
+  min-height: 4rem;
   text-align: center;
   padding-top: 1rem;
   padding-bottom: 1rem;
   background-color: lightcyan;
 }
 
-.btn-container{
+.btn-container {
   margin-top: 4rem;
-  
 }
 /* ********************************************** */
 /* * buttons */
 .btn {
-  /* display: block; */
   margin: 1rem;
   padding: 0.8rem 1.6rem;
-  /* color: white; */
   font-weight: 600;
   border-radius: 0.9rem;
 }
-.btn:hover{
-  /* color: white; */
+.btn:hover {
   background-color: lightgray;
 }
 
-.btn-cancel{
-background-color: lightcoral;
+.btn-cancel {
+  background-color: rgb(240, 128, 128);
+}
+.btn-cancel:hover {
+  color: white;
+  background-color: rgb(164, 50, 50);
 }
 
-.btn-success{
-background-color: rgb(120, 196, 120);
+.btn-success {
+  background-color: rgb(75, 181, 67);
 }
-/* ! just to make it even with submit input */
-#cancel_submit_user{
-  width: 9rem;
-}
-.btn-success:hover{
+.btn-success:hover {
   color: white;
   background-color: rgb(27, 135, 27);
 }
+/* ! just to make it even with submit input */
+#cancel_submit_user {
+  width: 9rem;
+}
 .btn-delete {
-  background-color: red;
+  background-color: rgb(240, 128, 128);
 }
 
-
 .btn-load-map {
-  background-color: green;
+  background-color: rgb(27, 135, 27);
+
 }
 /* ********************************************** */
 /** section ONE */
-
 
 /* ********************************************** */
 
@@ -114,8 +113,7 @@ background-color: rgb(120, 196, 120);
 } */
 
 /* #add_route { */
-  /* display: none; */
+/* display: none; */
 /* } */
-
 
 /* ********************************************** */

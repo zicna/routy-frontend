@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 
 /* *semanitic HTML elements, classes */
 body {
@@ -29,6 +25,12 @@ footer{
   padding-bottom: 10px;
 }
 
+label{
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
 
 /* ********************************************** */
 /* * non specific classes */
@@ -40,6 +42,12 @@ footer{
 }
 .show-inline{
     display: inline-block;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 /* ********************************************** */
 /* * containers */
@@ -77,6 +85,51 @@ section{
   background-color: lightcyan;
 }
 
+.btn-container{
+  /* margin: auto;
+  width: 60%; */
+  
+}
+/* ********************************************** */
+/* * buttons */
+.btn {
+  /* display: block; */
+  margin: 10px;
+  padding: 5px 15px;
+  /* color: white; */
+  font-weight: 600;
+  border-radius: 5px;
+}
+.btn:hover{
+  /* color: white; */
+  background-color: lightgray;
+}
+
+.btn-cancel{
+background-color: lightcoral;
+}
+
+.btn-success{
+background-color: rgb(120, 196, 120);
+}
+.btn-success:hover{
+  color: white;
+  background-color: rgb(27, 135, 27);
+}
+.btn-delete {
+  background-color: red;
+}
+
+
+.btn-load-map {
+  background-color: green;
+}
+/* ********************************************** */
+/** section ONE */
+
+
+/* ********************************************** */
+
 /* ********************************************** */
 /* * forms */
 /* .user-form {
@@ -93,22 +146,3 @@ section{
 
 
 /* ********************************************** */
-/* * buttons */
-.btn {
-  display: inline-block;
-  color: white;
-  font-weight: 600;
-}
-
-.btn-delete {
-  background-color: red;
-}
-
-.btn-load-map {
-  background-color: green;
-}
-/* ********************************************** */
-
-
-/* ********************************************** */
-

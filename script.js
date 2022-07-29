@@ -131,7 +131,6 @@ const handleMarkerSubmit = async function (event) {
       name: markerName.value,
       category: markerCategory.value,
       description: markerDescription.value,
-      // color: markerColor.value,
       latitude: markerLatitude.value,
       longitude: markerLongitude.value,
     },
@@ -147,14 +146,12 @@ const handleMarkerSubmit = async function (event) {
     console.log(error)
   } finally {
     markerForm.reset()
-    // markerColor.value = '#000000'
     markerForm.classList.toggle('hide')
   }
 }
 
 const handleCancelMarker = function () {
   markerForm.reset()
-  markerColor.value = '#000000'
   markerForm.classList.toggle('hide')
 }
 

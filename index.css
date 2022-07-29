@@ -16,11 +16,17 @@ footer{
 .header{
   height: 40px;
   background-color: aquamarine;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .footer{
   height: 40px;
   background-color: lightcyan;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 
@@ -51,23 +57,23 @@ section{
 
 .section-one{
   max-width: 30%;
-  min-height: 90%;
+  min-height: 80%;
 }
 
 .section-two{
   max-width: 65%;
-  min-height: 90%;
+  min-height: 80%;
 }
 .map-container {
-  height: 90vh;
+  height: 100%;
   outline: 1px solid red;
-  /* min-width: 500px;
-  min-height: 500px; */
   background-color: aquamarine;
 }
 
 .message-container{
-  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: lightcyan;
 }
 

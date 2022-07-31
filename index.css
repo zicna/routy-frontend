@@ -61,7 +61,7 @@ section {
 /* ********************************************** */
 /* * buttons */
 .btn {
-  margin: 1rem;
+  margin: 1.2rem;
   padding: 0.8rem 1.6rem;
   font-weight: 600;
   border-radius: 0.9rem;
@@ -88,6 +88,13 @@ section {
 /* ! just to make it even with submit input */
 #cancel_submit_user {
   width: 9rem;
+}
+
+.btn-logout{
+  margin: .4rem;
+  padding: 0rem 1.8rem;
+  font-weight: 500;
+  border-radius: 0.9rem;
 }
 .btn-delete {
   background-color: rgb(240, 128, 128);

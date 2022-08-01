@@ -62,12 +62,16 @@ section {
 /* * buttons */
 .btn {
   margin: .8rem;
-  padding: .4rem .8rem;
+  padding: .8rem 1.6rem;
   font-weight: 600;
   border-radius: 0.9rem;
 }
 .btn:hover {
+  transform: scale(0.98);
   background-color: lightgray;
+  opacity: 0.5;
+
+  font-weight: 900;
 }
 
 .btn-cancel {

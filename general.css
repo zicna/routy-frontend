@@ -111,6 +111,14 @@ li{
 form {
   margin-top: 4rem;
 }
+legend{
+  color: gray;
+}
+fieldset{
+  border-color: lightgray;
+  border-radius: .9rem;
+  padding: 1rem;
+}
 
 label {
   display: block;

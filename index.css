@@ -58,6 +58,15 @@ section {
 .btn-container {
   margin-top: 4rem;
 }
+
+.credentials{
+  border-bottom: 2px solid aquamarine;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
 /* ********************************************** */
 /* * buttons */
 .btn {
@@ -66,12 +75,24 @@ section {
   font-weight: 600;
   border-radius: 0.9rem;
 }
+
+.btn-small{
+  margin: .4rem;
+  padding: .3rem 1rem;
+  font-weight: 500;
+  border-radius: 0.8rem;
+}
+
+.btn-small:hover{
+  background-color: lightgray;
+  opacity: .8;
+}
 .btn:hover {
   transform: scale(0.98);
   background-color: lightgray;
   opacity: 0.5;
 
-  font-weight: 900;
+  /* font-weight: 900; */
 }
 
 .btn-cancel {
@@ -95,10 +116,8 @@ section {
 }
 
 .btn-logout{
-  margin: .4rem;
-  padding: 0rem 1.8rem;
-  font-weight: 500;
-  border-radius: 0.9rem;
+  
+  background-color: rgb(240, 128, 128);
 }
 .btn-delete {
   background-color: rgb(240, 128, 128);
@@ -114,18 +133,6 @@ section {
 /* ********************************************** */
 
 /* ********************************************** */
-/* * forms */
-/* .user-form {
-  display: none;
-} */
-
-/* #route_form {
-  display: none;
-} */
-
-/* #add_route { */
-/* display: none; */
-/* } */
 
 /* ********************************************** */
 /* * marker view */
@@ -173,25 +180,34 @@ section {
   right: -6rem;
   
 }
-
+/* ********************************************** */
 /** style based of marker category */
 .marker-activity{
-  /* background-color: lightgreen; */
   border-left: 1.5rem solid green;
 }
 
 .marker-danger{
-  /* background-color: lightcoral; */
-  /* border-left: 2rem solid lightcoral; */
   border-left: 1.5rem solid red;
 }
 
 .marker-ToGo{
   border-left: 1.5rem solid yellow;
-  /* background-color: rgb(251, 251, 88); */
 }
 
 .marker-miscellaneous{
   border-left: 1.5rem solid gray;
-  /* background-color: lightgray; */
+}
+/* ********************************************** */
+/* * user credentials*/
+
+ion-icon {
+  font-size: 2.5rem;
+  --ionicon-stroke-width: 5rem
+}
+
+.user{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  
 }

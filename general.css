@@ -103,6 +103,10 @@ p {
   margin-bottom: 2.4rem;
 }
 
+li{
+  list-style-type: none;
+}
+
 /* * login/sign up form style */
 form {
   margin-top: 4rem;

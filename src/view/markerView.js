@@ -1,6 +1,5 @@
 const markerList = document.querySelector('.marker-list')
-const markerMsgContainer = document.getElementById("marker-msg-container")
-
+const markerMsgContainer = document.getElementById('marker-msg-container')
 
 class MarkerView {
   #data
@@ -22,12 +21,17 @@ class MarkerView {
       const li = document.createElement('li')
       li.dataset.markerId = marker.id
       li.innerHTML = `
-                <p>${marker.name}</p>
-                Category: <span>${marker.category}</span>
-                <p>Description: ${marker.description}</p> 
-                <button class="btn btn-delete-marker">X</button>
-                <button class="btn btn-load-marker">L</button>
-            `
+        <div class="card marker-${marker.category}">
+          <div class="card-main">
+            <div class="name-display">${marker.name}</div>
+            <div class="text-display">${marker.description}</div> 
+          </div>
+          <div card="card-btns">
+            <button class="btn-marker btn btn-delete-marker">X</button>
+            <button class="btn-marker btn btn-load-marker">L</button>
+          </div>
+        </div>
+      `
       markerList.appendChild(li)
     })
   }
@@ -36,12 +40,17 @@ class MarkerView {
     const li = document.createElement('li')
     li.dataset.markerId = marker.id
     li.innerHTML = `
-                <p>${marker.name}</p>
-                Category: <span>${marker.category}</span>
-                <p>Description: ${marker.description}</p> 
-                <button class="btn btn-delete-marker">X</button>
-                <button class="btn btn-load-marker">L</button>
-            `
+      <div class="card marker-${marker.category}">
+        <div class="card-main">
+          <div class="name-display">${marker.name}</div>
+          <div class="text-display">${marker.description}</div> 
+        </div>
+        <div card="card-btns">
+          <button class="btn-marker btn btn-delete-marker">X</button>
+          <button class="btn-marker btn btn-load-marker">L</button>
+        </div>
+      </div>
+    `
     markerList.prepend(li)
   }
 

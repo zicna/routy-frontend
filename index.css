@@ -57,6 +57,7 @@ section {
 
 .btn-container {
   margin-top: 4rem;
+  margin-left: 2rem;
 }
 
 .credentials{
@@ -77,13 +78,14 @@ section {
 }
 
 .btn-small{
-  margin: .4rem;
-  padding: .3rem 1rem;
+  margin: 1rem;
+  padding: .2rem .5rem;
   font-weight: 500;
   border-radius: 0.8rem;
 }
 
 .btn-small:hover{
+  transform: scale(0.98);
   background-color: lightgray;
   opacity: .8;
 }
@@ -198,7 +200,7 @@ section {
   border-left: 1.5rem solid gray;
 }
 /* ********************************************** */
-/* * user credentials*/
+/* * user c*/
 
 ion-icon {
   font-size: 2.5rem;

@@ -3,6 +3,7 @@
 
 const credentials = document.querySelector('.credentials')
 const messageContainer = document.querySelector('.message-container')
+
 import { userName } from '../helpers/viewHelper.js'
 
 class UserView {
@@ -18,7 +19,6 @@ class UserView {
                 <ion-icon name="person-outline"></ion-icon>
                     ${userName(this._data.user.email)}
             </div>
-            <button class="btn-small btn-logout" id="logout_user">Log Out</button>
         `
   }
 

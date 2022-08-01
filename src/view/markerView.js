@@ -27,8 +27,8 @@ class MarkerView {
             <div class="text-display">${marker.description}</div> 
           </div>
           <div card="card-btns">
-            <button class="btn-marker btn btn-delete-marker">X</button>
-            <button class="btn-marker btn btn-load-marker">L</button>
+            <button class="btn-marker btn-small btn-cancel">del</button>
+            <button class="btn-marker btn-small btn-load-marker">load</button>
           </div>
         </div>
       `
@@ -40,16 +40,16 @@ class MarkerView {
     const li = document.createElement('li')
     li.dataset.markerId = marker.id
     li.innerHTML = `
-      <div class="card marker-${marker.category}">
-        <div class="card-main">
-          <div class="name-display">${marker.name}</div>
-          <div class="text-display">${marker.description}</div> 
-        </div>
-        <div card="card-btns">
-          <button class="btn-marker btn btn-delete-marker">X</button>
-          <button class="btn-marker btn btn-load-marker">L</button>
-        </div>
-      </div>
+    <div class="card marker-${marker.category}">
+    <div class="card-main">
+      <div class="name-display">${marker.name}</div>
+      <div class="text-display">${marker.description}</div> 
+    </div>
+    <div card="card-btns">
+      <button class="btn-marker btn-small btn-cancel">del</button>
+      <button class="btn-marker btn-small btn-load-marker">load</button>
+    </div>
+  </div>
     `
     markerList.prepend(li)
   }

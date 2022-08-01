@@ -105,8 +105,12 @@ section {
   background-color: rgb(164, 50, 50);
 }
 
-.btn-success {
+.btn-success, .btn-load-marker {
   background-color: rgb(75, 181, 67);
+}
+.btn-load-marker:hover{
+color: white;
+background-color: rgb(31, 74, 28);
 }
 .btn-success:hover {
   color: white;
@@ -118,7 +122,6 @@ section {
 }
 
 .btn-logout{
-  
   background-color: rgb(240, 128, 128);
 }
 .btn-delete {
@@ -127,8 +130,9 @@ section {
 
 .btn-load-map {
   background-color: rgb(27, 135, 27);
-
 }
+
+
 /* ********************************************** */
 /** section ONE */
 

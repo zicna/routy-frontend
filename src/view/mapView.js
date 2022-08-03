@@ -4,6 +4,7 @@ const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
 const markerList = document.querySelector('.marker-list')
 const markerMsgContainer = document.getElementById('marker-msg-container')
+const clearMap = document.getElementById('btn-clear-map')
 
 import * as helper from '../helpers/viewHelper.js'
 
@@ -76,8 +77,13 @@ class MapView {
 
   loadMarker(markerObject) {
     const coors = [markerObject.latitude, markerObject.longitude]
-    L.marker(coors)
+
+    const marker = L.marker(coors)
+    const markerGroup = L.layerGroup().addTo(this.#map)
+
+    marker
       .addTo(this.#map)
+      .addTo(markerGroup)
       .bindPopup(
         L.popup({
           maxWidtht: 250,
@@ -89,12 +95,10 @@ class MapView {
       )
       .setPopupContent(`${markerObject.name}`)
       .openPopup()
-      // .setView(coors, 10, {
-      //   animate: true,
-      //   pan: {
-      //     duration: 1,
-      //   },
-      // })
+
+    marker.on('dblclick', function (mapEvent) {
+      markerGroup.removeLayer(this._leaflet_id)
+    })
   }
 }
 

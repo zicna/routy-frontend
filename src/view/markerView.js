@@ -8,6 +8,8 @@ class MarkerView {
     this.#generateMarkap()
   }
 
+  
+
   #generateMarkap() {
     if (this.#data.length == 0) {
       markerMsgContainer.innerHTML = `

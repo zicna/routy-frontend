@@ -155,7 +155,9 @@ const handleCancelMarker = function () {
 }
 
 const handleMarkerListClick = async function (event) {
-  if (!event.target.classList.contains('btn-small')) return
+  if (!event.target.classList.contains('btn-small')) {
+    mapView.moveToPopup(event)
+  }
   if (event.target.classList.contains('btn-cancel')) {
     const li = event.target.parentElement.parentElement.parentElement
     const markerId = li.dataset.markerId
@@ -188,5 +190,4 @@ logOutBtn.addEventListener('click', handleUserLogOut)
 markerForm.addEventListener('submit', handleMarkerSubmit)
 markerBtnCancel.addEventListener('click', handleCancelMarker)
 markerList.addEventListener('click', handleMarkerListClick)
-clearMap.addEventListener('click')
 // *****************************************************************

@@ -15,6 +15,8 @@ class MapView {
     this.#getLocation()
   }
 
+  
+
   #getLocation() {
     if (!navigator.geolocation)
       return alert('Sorry your browser does not support geolocation')
@@ -76,6 +78,7 @@ class MapView {
 
   loadMarker(markerObject) {
     const coors = [markerObject.latitude, markerObject.longitude]
+    this.#map.setView(coors)
 
     const marker = L.marker(coors)
     const markerLayer = L.layerGroup().addTo(this.#map)
@@ -96,7 +99,7 @@ class MapView {
       .setPopupContent(`${markerObject.name}`)
       .openPopup()
 
-    marker.on('dblclick', function (mapE) {
+    marker.on('dblclick', function () {
       markerLayer.removeLayer(this._leaflet_id)
     })
   }

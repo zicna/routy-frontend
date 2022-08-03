@@ -70,8 +70,6 @@ body {
   display: flex;
   flex-direction: column;
   font-size: 1.6rem;
-  /* background-color: var(--mint); */
-  /* color: var(--light-gray--1) */
   background: linear-gradient(var(--yellow), var(--blue));
 }
 

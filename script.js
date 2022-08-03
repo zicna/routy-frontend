@@ -27,12 +27,10 @@ const markerList = document.querySelector('.marker-list')
 const markerName = document.getElementById('marker_name')
 const markerCategory = document.getElementById('marker_category')
 const markerDescription = document.getElementById('marker_description')
-// const markerColor = document.getElementById('marker_color')
 const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
 // * map
 const mapContainer = document.querySelector('.map-container')
-const clearMap = document.getElementById('btn-clear-map')
 
 const messageContainer = document.querySelector('.message-container')
 
@@ -67,7 +65,6 @@ const hideUserFormShowLogout = () => {
   userForm.reset()
   userForm.classList.toggle('hide')
   userLogout.classList.toggle('hide')
-  clearMap.classList.toggle('hide')
 }
 // ***************************************************
 // * AJAX requests
@@ -121,7 +118,6 @@ const handleUserLogOut = async function (event) {
 
     userCredentialsBtns.classList.toggle('hide')
     logOutBtn.classList.toggle('hide')
-    clearMap.classList.toggle('hide')
   } catch (error) {
     console.log(error)
   }
@@ -192,5 +188,5 @@ logOutBtn.addEventListener('click', handleUserLogOut)
 markerForm.addEventListener('submit', handleMarkerSubmit)
 markerBtnCancel.addEventListener('click', handleCancelMarker)
 markerList.addEventListener('click', handleMarkerListClick)
-// clearMap.addEventListener('click')
+clearMap.addEventListener('click')
 // *****************************************************************

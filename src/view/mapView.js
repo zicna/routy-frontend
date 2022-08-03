@@ -3,7 +3,7 @@ const markerForm = document.getElementById('marker_form')
 const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
 const markerList = document.querySelector('.marker-list')
-const markerMsgContainer = document.getElementById("marker-msg-container")
+const markerMsgContainer = document.getElementById('marker-msg-container')
 
 import * as helper from '../helpers/viewHelper.js'
 
@@ -54,10 +54,7 @@ class MapView {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map)
 
-    this.#map.on(
-      'click',
-      this.#showMarkerForm.bind(this)
-    )
+    this.#map.on('click', this.#showMarkerForm.bind(this))
   }
 
   #showMarkerForm(mapEvent) {
@@ -78,7 +75,7 @@ class MapView {
   }
 
   loadMarker(markerObject) {
-   const coors = [markerObject.latitude, markerObject.longitude]
+    const coors = [markerObject.latitude, markerObject.longitude]
     L.marker(coors)
       .addTo(this.#map)
       .bindPopup(
@@ -92,6 +89,12 @@ class MapView {
       )
       .setPopupContent(`${markerObject.name}`)
       .openPopup()
+      // .setView(coors, 10, {
+      //   animate: true,
+      //   pan: {
+      //     duration: 1,
+      //   },
+      // })
   }
 }
 

@@ -11,11 +11,10 @@ class MapView {
   #long
   #lat
   #map
+  #zoomLevel = 10
   render() {
     this.#getLocation()
   }
-
-  
 
   #getLocation() {
     if (!navigator.geolocation)
@@ -48,8 +47,7 @@ class MapView {
 
   #loadMap() {
     const coors = [this.#lat, this.#long]
-    const zoomLevel = 10
-    this.#map = L.map(mapContainer).setView(coors, zoomLevel)
+    this.#map = L.map(mapContainer).setView(coors, this.#zoomLevel)
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
       attribution:
@@ -78,11 +76,15 @@ class MapView {
 
   loadMarker(markerObject) {
     const coors = [markerObject.latitude, markerObject.longitude]
-    this.#map.setView(coors)
+    this.#map.setView(coors, this.#zoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1.5,
+      },
+    })
 
     const marker = L.marker(coors)
     const markerLayer = L.layerGroup().addTo(this.#map)
-
 
     marker
       .addTo(this.#map)

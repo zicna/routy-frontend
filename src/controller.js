@@ -32,8 +32,7 @@ const markerDescription = document.getElementById('marker_description')
 const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
 // * map
-// const mapContainer = document.querySelector('.map-container')
-
+// ! architecture related to map is moved to mapView.js
 const messageContainer = document.querySelector('.message-container')
 
 // *********************** UI ****************************
@@ -73,6 +72,12 @@ const hideLogOutShowLogIn = () => {
   userCredentialsBtns.classList.toggle('hide')
   logOutBtn.classList.toggle('hide')
 }
+
+const handleCancelMarker = function () {
+  markerForm.reset()
+  markerForm.classList.toggle('hide')
+}
+
 // *************** AJAX requests ************************************
 const handleUserSubmit = async function (event) {
   event.preventDefault()
@@ -84,9 +89,9 @@ const handleUserSubmit = async function (event) {
     },
   }
   try {
-    // !call something to load map with current user navigation
+    // *call something to load map with current user navigation
     mapView.render()
-    // *here we distingvish wheater we are siging in or logging in
+    // *here we distinguish whether we are signing in or logging in
     const action = event.target.dataset.action
     await model.loadUser(userObject, action)
     if (model.state.token) {
@@ -113,14 +118,13 @@ const handleUserLogOut = async function () {
     await model.logOutUser()
     // * log out user from view
     userView.logOutUser()
-    helper.addContentTo(model.state.message, messageContainer)
-    helper.clearContainer(messageContainer)
-
+    // *clear markers
     markerView.clear()
     mapView.removeMap()
-
-    // userCredentialsBtns.classList.toggle('hide')
-    // logOutBtn.classList.toggle('hide')
+    // * display message
+    helper.addContentTo(model.state.message, messageContainer)
+    helper.clearContainer(messageContainer)
+    //* UI
     hideLogOutShowLogIn()
   } catch (error) {
     console.log(error)
@@ -140,58 +144,57 @@ const handleMarkerSubmit = async function (event) {
   }
 
   try {
+    // * create marker
     await model.createMarker(markerObject)
+    // * add marker to UI
     markerView.addNewMarker(model.state.userMarkers[0])
-
+    // * display message
     helper.addContentTo(model.state.message, messageContainer)
     helper.clearContainer(messageContainer)
   } catch (error) {
     console.log(error)
   } finally {
+    // * no matter what happens this will run
     markerForm.reset()
     markerForm.classList.toggle('hide')
   }
 }
 
-const handleCancelMarker = function () {
-  markerForm.reset()
-  markerForm.classList.toggle('hide')
-}
-
 const handleMarkerListClick = async function (event) {
-  if (!event.target.classList.contains('btn-small')) {
-    const id = event.target.closest('li').dataset.markerId
-    const markerObject = model.state.userMarkers.find(
-      (marker) => marker.id == id
-    )
+  try {
+    if (!event.target.classList.contains('btn-small')) {
+      const id = event.target.closest('li').dataset.markerId
+      const markerObject = model.state.userMarkers.find(
+        (marker) => marker.id == id
+      )
 
-    mapView.moveToPopup(markerObject)
-  }
-  if (event.target.classList.contains('btn-cancel')) {
-    // const li = event.target.parentElement.parentElement.parentElement
-    const li = event.target.closest('li')
-    const markerId = li.dataset.markerId
+      mapView.moveToPopup(markerObject)
+    }
+    if (event.target.classList.contains('btn-cancel')) {
+      const li = event.target.closest('li')
+      const markerId = li.dataset.markerId
 
-    markerView.removeMarker(markerId)
-    await model.deleteMarker(markerId)
+      markerView.removeMarker(markerId)
+      await model.deleteMarker(markerId)
+    }
+    if (event.target.classList.contains('btn-load-marker')) {
+      const li = event.target.closest('li')
+      const markerId = li.dataset.markerId
+      //! 'filter' array method returns [], so we will use 'find' method
+      const markerObject = model.state.userMarkers.find(
+        (marker) => marker.id == markerId
+      )
+
+      // ! we need to reset state.message since this action is not sending AJAX request
+      model.setStateMessage('loading marker ... ')
+      mapView.loadMarker(markerObject)
+    }
+  } catch (error) {
+    console.log(error)
+  } finally {
+    helper.addContentTo(model.state.message, messageContainer)
+    helper.clearContainer(messageContainer)
   }
-  if (event.target.classList.contains('btn-load-marker')) {
-    // const li = event.target.parentElement.parentElement.parentElement
-    const li = event.target.closest('li')
-    const markerId = li.dataset.markerId
-    // ! 'filter' array method returns [], so we will use 'find' method
-    // const markerObject = model.state.userMarkers.filter(
-    //   (marker) => marker.id == markerId
-    // )[0]
-    const markerObject = model.state.userMarkers.find(
-      (marker) => marker.id == markerId
-    )
-    // ! we need to reset state.message since this action is not sending AJAX request
-    model.setStateMessage('loading marker ... ')
-    mapView.loadMarker(markerObject)
-  }
-  helper.addContentTo(model.state.message, messageContainer)
-  helper.clearContainer(messageContainer)
 }
 
 // * Event Listeners

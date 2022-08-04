@@ -21,6 +21,7 @@ const formPasswordConfirmation = document.querySelector(
 const cancelSubmitUser = document.getElementById('cancel_submit_user')
 const userLogout = document.getElementById('logout_user')
 //* marker form, inputs, and button
+const markerMsgContainer = document.getElementById('marker-msg-container')
 const markerForm = document.getElementById('marker_form')
 const markerBtnCancel = document.getElementById('marker_cancel')
 const markerList = document.querySelector('.marker-list')
@@ -100,6 +101,7 @@ const handleUserSubmit = async function (event) {
       event.target.reset()
       helper.addContentTo(model.state.message, messageContainer)
       helper.clearContainer(messageContainer)
+      helper.clearContainer(markerMsgContainer)
       markerView.render(model.state.userMarkers)
 
       hideUserFormShowLogout()
@@ -123,6 +125,7 @@ const handleUserLogOut = async function () {
     mapView.removeMap()
     // * display message
     helper.addContentTo(model.state.message, messageContainer)
+    helper.clearContainer(messageContainer)
     helper.clearContainer(messageContainer)
     //* UI
     hideLogOutShowLogIn()

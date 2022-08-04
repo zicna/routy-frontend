@@ -15,8 +15,10 @@ export const resetState = () => {
 }
 // * creating deep copy of state
 export const copyState = () => JSON.parse(JSON.stringify(state))
+
 export const setStateMessage = (msg) => (state.message = msg)
-// ! loadUser is NOT a pure function since it is manipulating state
+
+//* loadUser is NOT a pure function since it is manipulating state
 export const loadUser = async function (userObject, action) {
   try {
     const response = await fetch(`http://localhost:3000/${action}`, {
@@ -84,7 +86,6 @@ export const createMarker = async function (object) {
     if (!response.ok) {
       throw new Error(`${data.message}, ${data.status}`)
     }
-    // debugger
     const { marker } = data.data.user
     const { message } = data.data
     // ! ERROR returned value after pushing into array => new array length

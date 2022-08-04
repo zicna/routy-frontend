@@ -63,8 +63,14 @@ section {
 .map-container {
   height: 100%;
   background-color: var(--main-dark-1);
+  background: url("/images/leaflepmap.png");
+  background-size: 100%;
 }
 
+.map-container img{
+min-width: 100%;
+min-height: 100%;
+}
 .message-container {
   min-height: 4rem;
   text-align: center;

@@ -1,19 +1,15 @@
-// ! mistake view should nOT know anything about state (model)
-// import { state } from './model.js'
-
 const credentials = document.querySelector('.credentials')
-const messageContainer = document.querySelector('.message-container')
-
 import { userName } from '../helpers/viewHelper.js'
 
 class UserView {
-  _data
+  #data
 
   render(data) {
-    this._data = data
-    this.generateMarkup()
+    this.#data = data
+    this.#generateMarkup()
   }
-  generateMarkup() {
+  
+  #generateMarkup() {
     credentials.innerHTML = `
             <div class="user">
                 <ion-icon name="person-outline"></ion-icon>

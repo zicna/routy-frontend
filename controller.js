@@ -3,6 +3,7 @@ import * as model from './src/model.js'
 import userView from './src/view/userView.js'
 import mapView from './src/view/mapView.js'
 import markerView from './src/view/markerView.js'
+
 import * as helper from './src/helpers/viewHelper.js'
 
 // * Application Architecture
@@ -27,14 +28,15 @@ const markerList = document.querySelector('.marker-list')
 const markerName = document.getElementById('marker_name')
 const markerCategory = document.getElementById('marker_category')
 const markerDescription = document.getElementById('marker_description')
+// * hidden input fields
 const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
 // * map
-const mapContainer = document.querySelector('.map-container')
+// const mapContainer = document.querySelector('.map-container')
 
 const messageContainer = document.querySelector('.message-container')
 
-// ***************************************************
+// *********************** UI ****************************
 // * toggle hide class to handle clicks on page
 
 const showUserForm = (event) => {
@@ -66,21 +68,25 @@ const hideUserFormShowLogout = () => {
   userForm.classList.toggle('hide')
   userLogout.classList.toggle('hide')
 }
-// ***************************************************
-// * AJAX requests
 
+const hideLogOutShowLogIn = ()  => {
+  userCredentialsBtns.classList.toggle('hide')
+  logOutBtn.classList.toggle('hide')
+}
+// *************** AJAX requests ************************************
 const handleUserSubmit = async function (event) {
+  event.preventDefault()
+  const userObject = {
+    user: {
+      email: formEmail.value,
+      password: formPassword.value,
+      password_confirmation: formPasswordConfirmation.value,
+    },
+  }
   try {
-    event.preventDefault()
-
-    const userObject = {
-      user: {
-        email: formEmail.value,
-        password: formPassword.value,
-        password_confirmation: formPasswordConfirmation.value,
-      },
-    }
-
+    // !call something to load map with current user navigation
+    mapView.render()
+    // *here we distingvish wheater we are siging in or logging in
     const action = event.target.dataset.action
     await model.loadUser(userObject, action)
 
@@ -88,8 +94,6 @@ const handleUserSubmit = async function (event) {
       userView.render(model.state)
 
       event.target.reset()
-      // !call something to load map with current user navigation
-      mapView.render()
       helper.addContentTo(model.state.message, messageContainer)
       helper.clearContainer(messageContainer)
       markerView.render(model.state.userMarkers)
@@ -104,9 +108,9 @@ const handleUserSubmit = async function (event) {
   }
 }
 
-const handleUserLogOut = async function (event) {
+const handleUserLogOut = async function () {
   try {
-    // *log out user form model
+    // *log out user from model
     await model.logOutUser()
     // * log out user from view
     userView.logOutUser()
@@ -116,8 +120,9 @@ const handleUserLogOut = async function (event) {
     markerView.clear()
     mapView.removeMap()
 
-    userCredentialsBtns.classList.toggle('hide')
-    logOutBtn.classList.toggle('hide')
+    // userCredentialsBtns.classList.toggle('hide')
+    // logOutBtn.classList.toggle('hide')
+    hideLogOutShowLogIn()
   } catch (error) {
     console.log(error)
   }
@@ -156,22 +161,30 @@ const handleCancelMarker = function () {
 
 const handleMarkerListClick = async function (event) {
   if (!event.target.classList.contains('btn-small')) {
-    const liId = event.target.closest("li").dataset.markerId
-    const markerObject = model.state.userMarkers.find(marker => marker.id == liId)
+    const id = event.target.closest('li').dataset.markerId
+    const markerObject = model.state.userMarkers.find(
+      (marker) => marker.id == id
+    )
+
     mapView.moveToPopup(markerObject)
   }
   if (event.target.classList.contains('btn-cancel')) {
-    const li = event.target.parentElement.parentElement.parentElement
+    // const li = event.target.parentElement.parentElement.parentElement
+    const li = event.target.closest("li")
     const markerId = li.dataset.markerId
+
     markerView.removeMarker(markerId)
     await model.deleteMarker(markerId)
   }
   if (event.target.classList.contains('btn-load-marker')) {
-    const li = event.target.parentElement.parentElement.parentElement
+    // const li = event.target.parentElement.parentElement.parentElement
+    const li = event.target.closest("li")
     const markerId = li.dataset.markerId
-    const markerObject = model.state.userMarkers.filter(
-      (marker) => marker.id == markerId
-    )[0]
+    // ! 'filter' array method returns [], so we will use 'find' method
+    // const markerObject = model.state.userMarkers.filter(
+    //   (marker) => marker.id == markerId
+    // )[0]
+    const markerObject = model.state.userMarkers.find(marker => marker.id == markerId)
     // ! we need to reset state.message since this action is not sending AJAX request
     model.setStateMessage('loading marker ... ')
     mapView.loadMarker(markerObject)
@@ -182,14 +195,17 @@ const handleMarkerListClick = async function (event) {
 
 // * Event Listeners
 // *****************************************************************
+// * UI changes only, toggle 'hide' class
 userCredentialsBtns.addEventListener('click', showUserForm)
 cancelSubmitUser.addEventListener('click', hideUserForm)
-
+// * AJAX requests with UI changes to follow
 userForm.addEventListener('submit', handleUserSubmit)
-
 logOutBtn.addEventListener('click', handleUserLogOut)
-
+// * Events related with map and marker
+// *AJAX + UI
 markerForm.addEventListener('submit', handleMarkerSubmit)
+// * UI only
 markerBtnCancel.addEventListener('click', handleCancelMarker)
+//* AJAX + UI => 1. deleting marker(AJAX + UI) 2. loading to map(UI) 3. centering map(UI)
 markerList.addEventListener('click', handleMarkerListClick)
 // *****************************************************************

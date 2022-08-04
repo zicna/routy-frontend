@@ -16,6 +16,17 @@ class MapView {
     this.#getLocation()
   }
 
+  moveToPopup(markerObject) {
+    const coors = [markerObject.latitude, markerObject.longitude]
+
+    this.#map.setView(coors, this.#zoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1.5,
+      },
+    })
+  }
+
   #getLocation() {
     if (!navigator.geolocation)
       return alert('Sorry your browser does not support geolocation')

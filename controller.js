@@ -156,7 +156,9 @@ const handleCancelMarker = function () {
 
 const handleMarkerListClick = async function (event) {
   if (!event.target.classList.contains('btn-small')) {
-    mapView.moveToPopup(event)
+    const liId = event.target.closest("li").dataset.markerId
+    const markerObject = model.state.userMarkers.find(marker => marker.id == liId)
+    mapView.moveToPopup(markerObject)
   }
   if (event.target.classList.contains('btn-cancel')) {
     const li = event.target.parentElement.parentElement.parentElement

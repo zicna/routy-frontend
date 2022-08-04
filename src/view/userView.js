@@ -13,7 +13,7 @@ class UserView {
     credentials.innerHTML = `
             <div class="user">
                 <ion-icon name="person-outline"></ion-icon>
-                    ${userName(this._data.user.email)}
+                    ${userName(this.#data.user.email)}
             </div>
         `
   }

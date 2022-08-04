@@ -2,7 +2,6 @@ const mapContainer = document.querySelector('.map-container')
 const markerForm = document.getElementById('marker_form')
 const markerLatitude = document.getElementById('marker_latitude')
 const markerLongitude = document.getElementById('marker_longitude')
-const markerList = document.querySelector('.marker-list')
 const markerMsgContainer = document.getElementById('marker-msg-container')
 
 import * as helper from '../helpers/viewHelper.js'
@@ -12,6 +11,8 @@ class MapView {
   #lat
   #map
   #zoomLevel = 10
+
+  // ***************** API of a MapView class ********************
   render() {
     this.#getLocation()
   }
@@ -26,6 +27,48 @@ class MapView {
       },
     })
   }
+
+  removeMap() {
+    if (this.#map && this.#map.remove) {
+      this.#map.off()
+      this.#map.remove()
+    }
+  }
+
+  loadMarker(markerObject) {
+    const coors = [markerObject.latitude, markerObject.longitude]
+    this.#map.setView(coors, this.#zoomLevel, {
+      animate: true,
+      pan: {
+        duration: 1.5,
+      },
+    })
+
+    const marker = L.marker(coors)
+    const markerLayer = L.layerGroup().addTo(this.#map)
+
+    marker
+      .addTo(this.#map)
+      .addTo(markerLayer)
+      .bindPopup(
+        L.popup({
+          maxWidtht: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: 'popup',
+        })
+      )
+      .setPopupContent(`${markerObject.name}`)
+      .openPopup()
+
+    marker.on('dblclick', function () {
+      markerLayer.removeLayer(this._leaflet_id)
+    })
+  }
+
+  // *************************************
+
 
   #getLocation() {
     if (!navigator.geolocation)
@@ -78,44 +121,7 @@ class MapView {
     markerLatitude.value = lat
     markerLongitude.value = lng
   }
-  removeMap() {
-    if (this.#map && this.#map.remove) {
-      this.#map.off()
-      this.#map.remove()
-    }
-  }
-
-  loadMarker(markerObject) {
-    const coors = [markerObject.latitude, markerObject.longitude]
-    this.#map.setView(coors, this.#zoomLevel, {
-      animate: true,
-      pan: {
-        duration: 1.5,
-      },
-    })
-
-    const marker = L.marker(coors)
-    const markerLayer = L.layerGroup().addTo(this.#map)
-
-    marker
-      .addTo(this.#map)
-      .addTo(markerLayer)
-      .bindPopup(
-        L.popup({
-          maxWidtht: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: 'popup',
-        })
-      )
-      .setPopupContent(`${markerObject.name}`)
-      .openPopup()
-
-    marker.on('dblclick', function () {
-      markerLayer.removeLayer(this._leaflet_id)
-    })
-  }
+  
 }
 
 export default new MapView()

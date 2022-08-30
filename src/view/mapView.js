@@ -13,7 +13,7 @@ class MapView {
   #zoomLevel = 10
 
   // ***************** API of a MapView class ********************
-  render() {
+  render() {    
     this.#getLocation()
   }
 

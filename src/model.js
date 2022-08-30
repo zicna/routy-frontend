@@ -32,12 +32,12 @@ export const loadUser = async function (userObject, action) {
 
     const data = await response.json()
     if (!response.ok) throw new Error(`${data.message}`)
-
+    
     const { user } = data.data
     const { token } = data.data
     const { message } = data.data
     const { userMarkers } = data.data
-
+    
     state = {
       user: user,
       userMarkers: userMarkers,
